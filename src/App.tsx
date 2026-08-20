@@ -23,8 +23,18 @@ import { EMPTY_PROGRESS, loadProgress, recordAnswer, resetProgress, type Progres
 import { ContinuousTrainer } from './continuous/ContinuousTrainer'
 import { createRandomContinuousSession } from './continuous/random-session'
 import type { ContinuousSession } from './continuous/types'
+import { ruleLessons, totalRuleQuestions } from './rules/course'
+import { RuleLessonScreen, RulesCatalog } from './rules/RulesCourse'
+import {
+  completeRuleLesson,
+  EMPTY_RULE_PROGRESS,
+  loadRuleProgress,
+  recordRuleAnswer,
+  resetRuleProgress,
+  type RuleProgressState,
+} from './rules/progress'
 
-type View = 'home' | 'courses' | 'lesson' | 'review' | 'continuous'
+type View = 'home' | 'rules' | 'ruleLesson' | 'courses' | 'lesson' | 'review' | 'continuous'
 
 function shuffled<T>(values: readonly T[]): T[] {
   const result = [...values]
@@ -309,8 +319,10 @@ function CourseCatalog({ progress, onBack, onStartPrinciple, onStartRandom }: {
   )
 }
 
-function Home({ progress, onOpenCourses, onReview, onReset, onStartContinuous }: {
+function Home({ progress, ruleProgress, onOpenRules, onOpenCourses, onReview, onReset, onStartContinuous }: {
   progress: ProgressState
+  ruleProgress: RuleProgressState
+  onOpenRules: () => void
   onOpenCourses: () => void
   onReview: () => void
   onReset: () => void
@@ -318,12 +330,22 @@ function Home({ progress, onOpenCourses, onReview, onReset, onStartContinuous }:
 }) {
   const completed = Object.values(progress.correct).filter(Boolean).length
   const attempted = Object.keys(progress.attempts).length
+  const rulesCorrect = Object.values(ruleProgress.correct).filter(Boolean).length
+  const rulesAttempted = Object.keys(ruleProgress.attempts).length
   return (
     <main className="app-shell home-shell">
       <header className="brand"><div className="brand-mark">牌</div><div><strong>牌理小课</strong><span>日麻牌效练习</span></div></header>
       <section className="hero">
         <div className="hero-copy"><span className="eyebrow">给新手的一次一切练习</span><h1>先把手牌<br />看清楚，再切。</h1><p>从《魔女BLOG》的牌效原则出发，一题只做一个决定。可以先亲手标记复合形，再比较真正的受入。</p></div>
         <div className="hero-tile"><img src={tileImage('5m')} alt="五万" /><span>循序渐进</span></div>
+      </section>
+      <section className="rules-entry-card">
+        <div className="rules-entry-heading">
+          <span className="version-tag">先学</span>
+          <div><strong>日麻规则入门</strong><p>为已经会其他麻将的玩家准备：役、鸣牌、立直、振听与宝牌。</p></div>
+        </div>
+        <div className="rules-entry-progress"><span>{ruleProgress.completedLessons.length} / {ruleLessons.length} 课</span><span>{rulesCorrect} / {totalRuleQuestions} 题答对过</span></div>
+        <button className="primary-button full" onClick={onOpenRules}>{rulesAttempted ? '继续规则课程' : '开始规则入门'}<span>→</span></button>
       </section>
       <section className="dashboard-card">
         <div className="dashboard-top"><div><span>课程进度</span><strong>{completed}<small> / {questions.length}</small></strong></div><div className="ring" style={{ '--progress': `${completed / questions.length * 360}deg` } as CSSProperties}><span>{Math.round(completed / questions.length * 100)}%</span></div></div>
@@ -334,7 +356,7 @@ function Home({ progress, onOpenCourses, onReview, onReset, onStartContinuous }:
         <div><span className="version-tag">连续</span><strong>连续牌效训练</strong><p>每局即时洗出完整随机牌山，从随机散牌连续摸切；普通手、七对子与国士始终动态判断。</p></div>
         <button className="primary-button full" onClick={onStartContinuous}>开始连续训练<span>→</span></button>
       </section>
-      {attempted > 0 && <button className="reset-button" onClick={onReset}>清除本机学习记录</button>}
+      {(attempted > 0 || rulesAttempted > 0) && <button className="reset-button" onClick={onReset}>清除本机学习记录</button>}
       <footer>题目与解释为原创改编 · 牌面来自 FluffyStuff / riichi-mahjong-tiles</footer>
     </main>
   )
@@ -346,6 +368,8 @@ function App() {
   const [run, setRun] = useState<number[]>(questions.map((_, i) => i))
   const [runPosition, setRunPosition] = useState(0)
   const [progress, setProgress] = useState<ProgressState>(() => typeof localStorage === 'undefined' ? EMPTY_PROGRESS : loadProgress())
+  const [ruleProgress, setRuleProgress] = useState<RuleProgressState>(() => typeof localStorage === 'undefined' ? EMPTY_RULE_PROGRESS : loadRuleProgress())
+  const [ruleLessonId, setRuleLessonId] = useState(ruleLessons[0].id)
   const [continuousSession, setContinuousSession] = useState<ContinuousSession | null>(null)
 
   function startRandomBasics() {
@@ -397,11 +421,20 @@ function App() {
     return <CourseCatalog progress={progress} onBack={() => setView('home')} onStartPrinciple={startPrinciple} onStartRandom={startRandomBasics} />
   }
 
+  if (view === 'rules') {
+    return <RulesCatalog progress={ruleProgress} onBack={() => setView('home')} onStartLesson={(lessonId) => { setRuleLessonId(lessonId); setView('ruleLesson') }} />
+  }
+
+  if (view === 'ruleLesson') {
+    const lesson = ruleLessons.find((item) => item.id === ruleLessonId) ?? ruleLessons[0]
+    return <RuleLessonScreen key={lesson.id} lesson={lesson} onBack={() => setView('rules')} onAnswered={(questionId, correct) => setRuleProgress((current) => recordRuleAnswer(current, questionId, correct))} onComplete={(lessonId) => setRuleProgress((current) => completeRuleLesson(current, lessonId))} />
+  }
+
   if (view === 'continuous' && continuousSession) {
     return <ContinuousTrainer key={continuousSession.id} session={continuousSession} onBack={() => setView('home')} onNewSession={startContinuous} />
   }
 
-  return <Home progress={progress} onOpenCourses={() => setView('courses')} onReview={startReview} onReset={() => setProgress(resetProgress())} onStartContinuous={startContinuous} />
+  return <Home progress={progress} ruleProgress={ruleProgress} onOpenRules={() => setView('rules')} onOpenCourses={() => setView('courses')} onReview={startReview} onReset={() => { setProgress(resetProgress()); setRuleProgress(resetRuleProgress()) }} onStartContinuous={startContinuous} />
 }
 
 export default App
