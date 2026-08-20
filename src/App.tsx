@@ -23,7 +23,7 @@ import { EMPTY_PROGRESS, loadProgress, recordAnswer, resetProgress, type Progres
 import { ContinuousTrainer } from './continuous/ContinuousTrainer'
 import { createRandomContinuousSession } from './continuous/random-session'
 import type { ContinuousSession } from './continuous/types'
-import { ruleLessons, totalRuleQuestions } from './rules/course'
+import { ruleLessons, rulePhases, totalRuleQuestions } from './rules/course'
 import { RuleLessonScreen, RulesCatalog } from './rules/RulesCourse'
 import {
   completeRuleLesson,
@@ -342,7 +342,10 @@ function Home({ progress, ruleProgress, onOpenRules, onOpenCourses, onReview, on
       <section className="rules-entry-card">
         <div className="rules-entry-heading">
           <span className="version-tag">先学</span>
-          <div><strong>日麻规则入门</strong><p>为已经会其他麻将的玩家准备：役、鸣牌、立直、振听与宝牌。</p></div>
+          <div><strong>从川麻 / 国标切换到日麻</strong><p>不从牌名讲起，只改变真正会妨碍上手的习惯。</p></div>
+        </div>
+        <div className="home-rule-goals">
+          {rulePhases.map((phase) => <div key={phase.id}><span>{phase.eyebrow}</span><strong>{phase.title}</strong></div>)}
         </div>
         <div className="rules-entry-progress"><span>{ruleProgress.completedLessons.length} / {ruleLessons.length} 课</span><span>{rulesCorrect} / {totalRuleQuestions} 题答对过</span></div>
         <button className="primary-button full" onClick={onOpenRules}>{rulesAttempted ? '继续规则课程' : '开始规则入门'}<span>→</span></button>

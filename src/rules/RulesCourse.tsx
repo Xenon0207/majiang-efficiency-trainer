@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import { MahjongTile as Tile } from '../components/MahjongTile'
-import { doraFromIndicator, tileLabel } from '../domain/tiles'
-import { ruleLessons, totalRuleQuestions, type RuleChoice, type RuleLesson, type RuleQuestion } from './course'
+import { ruleLessons, rulePhases, totalRuleQuestions, type RuleChoice, type RuleLesson, type RuleQuestion } from './course'
 import type { RuleProgressState } from './progress'
 
 function shuffledChoices(choices: readonly RuleChoice[]): RuleChoice[] {
@@ -56,28 +55,31 @@ export function RulesCatalog({ progress, onBack, onStartLesson }: {
       <article className="lesson-card course-catalog-card rules-catalog-card">
         <span className="eyebrow">先懂规则，再练牌效</span>
         <h1>日麻真正不同在哪里</h1>
-        <p className="prompt">跳过你已经会的摸切与组牌，只讲场况、役、立直、振听和宝牌。</p>
+        <p className="prompt">为会打川麻或国标的玩家准备：不从牌名讲起，只改掉会妨碍日麻上手的关键习惯。</p>
 
         <div className="rules-overview">
           <div><span>课程</span><strong>{progress.completedLessons.length}<small> / {ruleLessons.length}</small></strong></div>
           <div><span>答对过</span><strong>{correct}<small> / {totalRuleQuestions}</small></strong></div>
-          <p>每课约 3 分钟 · 一张规则卡 + 3 道判断题</p>
+          <p>重点概念会换场景反复出现 · 共 {totalRuleQuestions} 道题</p>
         </div>
 
-        <section className="course-list catalog-course-list">
-          <div className="section-heading"><div><span className="eyebrow">第一阶段</span><h2>7 个必备规则</h2></div><small>建议按顺序</small></div>
-          {ruleLessons.map((lesson) => {
-            const completed = progress.completedLessons.includes(lesson.id)
-            const answered = lesson.questions.filter((question) => progress.attempts[question.id]).length
-            return (
-              <button className="course-item" onClick={() => onStartLesson(lesson.id)} key={lesson.id}>
-                <span className={`course-number ${completed ? 'done' : answered ? 'tried' : ''}`}>{completed ? '✓' : lesson.order}</span>
-                <div><strong>{lesson.title}</strong><span>{completed ? '已完成' : answered ? `${answered}/${lesson.questions.length} 道已作答` : lesson.subtitle}</span></div>
-                <i>›</i>
-              </button>
-            )
-          })}
-        </section>
+        {rulePhases.map((phase) => (
+          <section className="course-list catalog-course-list rule-phase-section" key={phase.id}>
+            <div className="rule-phase-heading"><span>{phase.eyebrow}</span><strong>{phase.title}</strong><p>{phase.goal}</p></div>
+            {phase.lessonIds.map((lessonId) => {
+              const lesson = ruleLessons.find((item) => item.id === lessonId)!
+              const completed = progress.completedLessons.includes(lesson.id)
+              const answered = lesson.questions.filter((question) => progress.attempts[question.id]).length
+              return (
+                <button className="course-item" onClick={() => onStartLesson(lesson.id)} key={lesson.id}>
+                  <span className={`course-number ${completed ? 'done' : answered ? 'tried' : ''}`}>{completed ? '✓' : lesson.order}</span>
+                  <div><strong>{lesson.title}</strong><span>{completed ? '已完成' : answered ? `${answered}/${lesson.questions.length} 道已作答` : `${lesson.subtitle} · ${lesson.questions.length}题`}</span></div>
+                  <i>›</i>
+                </button>
+              )
+            })}
+          </section>
+        ))}
       </article>
     </main>
   )
@@ -89,6 +91,10 @@ function RuleIntro({ lesson, onStart }: { lesson: RuleLesson; onStart: () => voi
       <span className="eyebrow">规则 {lesson.order} · {lesson.subtitle}</span>
       <h1>{lesson.title}</h1>
       <p className="prompt">{lesson.intro}</p>
+      <section className="rule-contrast-card">
+        <div><span>你可能会这样想</span><p>{lesson.habit}</p></div>
+        <div><span>日麻这里不同</span><p>{lesson.difference}</p></div>
+      </section>
       <section className="rule-reading-card">
         <ul>{lesson.points.map((point) => <li key={point}>{point}</li>)}</ul>
         <div className="rule-memory"><span>记住这一点</span><strong>{lesson.keyPoint}</strong></div>
@@ -100,14 +106,16 @@ function RuleIntro({ lesson, onStart }: { lesson: RuleLesson; onStart: () => voi
           <p>{lesson.example.caption}</p>
         </section>
       )}
-      <button className="primary-button full rule-start-button" onClick={onStart}>开始 3 道判断题<span>→</span></button>
+      <aside className="rule-terms"><span>最后认识术语</span><p>{lesson.terms}</p></aside>
+      <button className="primary-button full rule-start-button" onClick={onStart}>开始 {lesson.questions.length} 道场景题<span>→</span></button>
     </>
   )
 }
 
-function RuleQuizQuestion({ question, number, onAnswered, onNext, isLast }: {
+function RuleQuizQuestion({ question, number, total, onAnswered, onNext, isLast }: {
   question: RuleQuestion
   number: number
+  total: number
   onAnswered: (correct: boolean) => void
   onNext: () => void
   isLast: boolean
@@ -124,7 +132,7 @@ function RuleQuizQuestion({ question, number, onAnswered, onNext, isLast }: {
 
   return (
     <section className="rule-quiz-card">
-      <span className="eyebrow">判断题 {number} / 3</span>
+      <span className="eyebrow">场景题 {number} / {total}</span>
       <h1>{question.prompt}</h1>
       {question.note && <p className="prompt">{question.note}</p>}
       <QuestionVisual question={question} />
@@ -182,6 +190,7 @@ export function RuleLessonScreen({ lesson, onBack, onAnswered, onComplete }: {
             key={question.id}
             question={question}
             number={questionIndex + 1}
+            total={lesson.questions.length}
             isLast={questionIndex + 1 === lesson.questions.length}
             onAnswered={(correct) => {
               if (correct) setCorrectCount((value) => value + 1)
@@ -203,8 +212,4 @@ export function RuleLessonScreen({ lesson, onBack, onAnswered, onComplete }: {
       </article>
     </main>
   )
-}
-
-export function doraAnswerLabel(indicator: RuleQuestion['doraIndicator']): string | null {
-  return indicator ? tileLabel(doraFromIndicator(indicator)) : null
 }

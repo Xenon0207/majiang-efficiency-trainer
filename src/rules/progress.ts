@@ -4,7 +4,7 @@ export interface RuleProgressState {
   attempts: Record<string, number>
 }
 
-const STORAGE_KEY = 'majo-rule-course-progress-v1'
+const STORAGE_KEY = 'majo-rule-course-progress-v2'
 export const EMPTY_RULE_PROGRESS: RuleProgressState = { completedLessons: [], correct: {}, attempts: {} }
 
 export function loadRuleProgress(): RuleProgressState {

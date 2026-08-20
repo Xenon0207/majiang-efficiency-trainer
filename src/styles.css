@@ -43,6 +43,10 @@ button:focus-visible { outline: 3px solid #f0b64a; outline-offset: 3px; }
 .rules-entry-heading .version-tag { display: inline-flex; padding: 5px 9px; border-radius: 15px; color: #493c20; background: #e4bb68; font-size: 10px; font-weight: 900; }
 .rules-entry-heading strong { display: block; font: 900 18px "Noto Serif SC", serif; }
 .rules-entry-heading p { margin: 5px 0 12px; color: var(--muted); font-size: 11px; line-height: 1.65; }
+.home-rule-goals { display: grid; gap: 5px; margin: 2px 0 12px 52px; }
+.home-rule-goals > div { display: grid; grid-template-columns: minmax(105px,.8fr) 1fr; gap: 8px; align-items: center; padding: 6px 8px; border-radius: 7px; background: #f7f2e8; }
+.home-rule-goals span { color: #9a7530; font-size: 8px; font-weight: 900; }
+.home-rule-goals strong { font-size: 10px; }
 .rules-entry-progress { display: flex; justify-content: space-between; margin: 0 0 14px 52px; color: #7e786e; font-size: 10px; }
 .continuous-entry-card { margin-top: 15px; padding: 19px 21px; border-radius: 18px; }
 .continuous-entry-card > div:first-child { position: relative; padding-left: 54px; }
@@ -101,6 +105,12 @@ button:focus-visible { outline: 3px solid #f0b64a; outline-offset: 3px; }
 .rules-overview strong { margin-top: 2px; font: 900 24px "Noto Serif SC", serif; }
 .rules-overview strong small { color: #999185; font: 600 11px "Noto Sans SC", sans-serif; }
 .rules-overview p { grid-column: 1 / -1; margin: 2px 0 0; color: var(--muted); text-align: center; font-size: 10px; }
+.rule-phase-section { margin-top: 28px; }
+.rule-phase-heading { margin: 0 4px 11px; padding: 13px 14px; border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0; background: #f7f1e5; }
+.rule-phase-heading span, .rule-phase-heading strong { display: block; }
+.rule-phase-heading span { color: #9a7530; font-size: 9px; font-weight: 900; letter-spacing: .08em; }
+.rule-phase-heading strong { margin-top: 3px; font: 900 19px "Noto Serif SC", serif; }
+.rule-phase-heading p { margin: 5px 0 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
 .reset-button { display: block; margin: 30px auto 0; border: 0; background: transparent; color: #8c867b; font-size: 11px; text-decoration: underline; cursor: pointer; }
 footer { padding: 24px 5px 0; color: #8e887e; text-align: center; font-size: 10px; }
 
@@ -121,6 +131,12 @@ footer { padding: 24px 5px 0; color: #8e887e; text-align: center; font-size: 10p
 .prompt { margin: 0 auto 20px; color: var(--muted); text-align: center; font-size: 13px; }
 
 .rule-reading-card { padding: 17px; border: 1px solid #d7cdbb; border-radius: 13px; background: #f8f3e8; }
+.rule-contrast-card { display: grid; gap: 8px; margin-bottom: 12px; }
+.rule-contrast-card > div { padding: 13px 14px; border: 1px solid #e0d8ca; border-radius: 10px; background: #fbf8f1; }
+.rule-contrast-card > div:last-child { border-color: #bfd2ca; background: #edf5f1; }
+.rule-contrast-card span { color: #9a6e5e; font-size: 9px; font-weight: 900; letter-spacing: .08em; }
+.rule-contrast-card > div:last-child span { color: #34705d; }
+.rule-contrast-card p { margin: 5px 0 0; color: #56645f; font-size: 11px; line-height: 1.7; }
 .rule-reading-card ul { display: grid; gap: 11px; margin: 0; padding-left: 20px; }
 .rule-reading-card li { padding-left: 3px; color: #4e5f59; font-size: 12px; line-height: 1.7; }
 .rule-reading-card li::marker { color: var(--orange); }
@@ -131,6 +147,9 @@ footer { padding: 24px 5px 0; color: #8e887e; text-align: center; font-size: 10p
 .rule-example-card { margin-top: 14px; padding: 15px; border: 1px solid #cbd8d2; border-radius: 12px; background: #edf4f1; }
 .rule-example-card > span { display: block; margin-bottom: 9px; color: #42675b; font-size: 10px; font-weight: 900; }
 .rule-example-card p { margin: 10px 0 0; color: #53655e; font-size: 10px; line-height: 1.65; }
+.rule-terms { margin-top: 13px; padding: 10px 12px; border-top: 1px dashed #d9d2c6; color: #7d7a73; }
+.rule-terms span { font-size: 8px; font-weight: 900; letter-spacing: .1em; }
+.rule-terms p { margin: 4px 0 0; font-size: 9px; line-height: 1.65; }
 .rule-tiles { display: flex; flex-wrap: wrap; align-items: center; gap: 3px; }
 .rule-tiles .tile { width: 32px; height: 44px; filter: drop-shadow(0 2px 1px rgba(0,0,0,.18)); }
 .rule-start-button { margin-top: 18px; }
@@ -425,6 +444,7 @@ footer { padding: 24px 5px 0; color: #8e887e; text-align: center; font-size: 10p
   .lesson-shell { padding: 24px; background: var(--forest); }
   .topbar { border-radius: 18px 18px 0 0; }
   .lesson-card { min-height: auto; padding: 35px 38px 45px; border-radius: 0 0 18px 18px; box-shadow: 0 18px 38px rgba(0,0,0,.18); }
+  .rule-contrast-card { grid-template-columns: 1fr 1fr; }
   .hand-grid { --hand-gap: 4px; grid-template-columns: repeat(14, minmax(0, 1fr)); }
   .continuous-candidates .evaluation-row { grid-template-columns: 1.15fr .48fr .42fr 1.65fr; grid-template-areas: "discard numbers quality ukeire"; }
   .quality-ukeire-breakdown { padding-top: 0; padding-left: 7px; border-top: 0; border-left: 1px dashed #e0ddd5; }

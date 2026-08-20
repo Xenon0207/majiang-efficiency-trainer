@@ -1,12 +1,15 @@
 import { describe, expect, it } from 'vitest'
-import { ruleLessons, totalRuleQuestions } from './course'
+import { ruleLessons, rulePhases, totalRuleQuestions } from './course'
 
 describe('rule course content', () => {
-  it('publishes seven lessons with three questions each', () => {
-    expect(ruleLessons).toHaveLength(7)
-    expect(totalRuleQuestions).toBe(21)
-    expect(ruleLessons.map((lesson) => lesson.order)).toEqual([1, 2, 3, 4, 5, 6, 7])
-    for (const lesson of ruleLessons) expect(lesson.questions).toHaveLength(3)
+  it('publishes twelve lessons in three goal-led phases', () => {
+    expect(ruleLessons).toHaveLength(12)
+    expect(rulePhases).toHaveLength(3)
+    expect(totalRuleQuestions).toBeGreaterThanOrEqual(50)
+    expect(ruleLessons.map((lesson) => lesson.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+    const phaseLessonIds = rulePhases.flatMap((phase) => phase.lessonIds)
+    expect(new Set(phaseLessonIds).size).toBe(ruleLessons.length)
+    expect(new Set(phaseLessonIds)).toEqual(new Set(ruleLessons.map((lesson) => lesson.id)))
   })
 
   it('uses unique ids and exactly one correct answer per question', () => {
@@ -26,5 +29,6 @@ describe('rule course content', () => {
     expect(furiten?.keyPoint).toContain('整组等待')
     expect(furiten?.questions[0].prompt).toContain('23万')
     expect(furiten?.questions[0].prompt).toContain('1万和4万')
+    expect(furiten?.questions.length).toBeGreaterThanOrEqual(7)
   })
 })
