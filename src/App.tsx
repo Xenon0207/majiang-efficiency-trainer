@@ -340,7 +340,7 @@ function Home({ progress, ruleProgress, onOpenRules, onOpenDetailedRules, onOpen
   const detailedCompleted = detailedLessons.filter((lesson) => ruleProgress.completedLessons.includes(lesson.id)).length
   return (
     <main className="app-shell home-shell">
-      <header className="brand"><div className="brand-mark">牌</div><div><strong>牌理小课</strong><span>日麻牌效练习</span></div></header>
+      <header className="brand"><div className="brand-mark">牌</div><div><strong>日麻小课</strong><span>规则 · 牌效 · 算分</span></div></header>
       <section className="hero">
         <div className="hero-copy"><span className="eyebrow">从会打麻将，到真正理解日麻</span><h1>懂规则，<br />也懂每一切。</h1><p>从快速规则、基础牌效到连续手牌训练，再逐步进入役种、算分与攻防判断。</p></div>
         <div className="hero-tile"><img src={tileImage('7z')} alt="红中" /><span>循序渐进</span></div>
