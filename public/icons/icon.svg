@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="105" fill="#173c33"/>
+  <rect x="111" y="73" width="290" height="360" rx="30" fill="#c9bea9"/>
+  <rect x="111" y="61" width="290" height="350" rx="30" fill="#fffaf0" stroke="#e2dacb" stroke-width="9"/>
+  <text x="256" y="305" text-anchor="middle" font-family="serif" font-size="190" font-weight="900" fill="#d96c43">牌</text>
+</svg>

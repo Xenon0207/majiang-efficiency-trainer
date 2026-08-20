@@ -1,0 +1,5572 @@
+[
+  {
+    "id": "q-iso-001",
+    "principleId": "TE-ISO-001",
+    "title": "客风与役牌",
+    "prompt": "客风和役牌同时孤立时，哪张更应该先离开？",
+    "hand": "123p456s24m05p3z6z8m9s",
+    "drawnTile": "9s",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "7p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-456",
+        "suit": "s",
+        "pattern": "456"
+      }
+    ],
+    "answerTiles": [
+      "3z"
+    ],
+    "explanation": {
+      "summary": "西是客风，只能靠摸成对子；发可以成为役牌，因此先切西。",
+      "bestPartition": [
+        "123",
+        "456",
+        "24",
+        "55",
+        "8",
+        "9",
+        "发"
+      ],
+      "contrast": "两者当前受入相同，但役牌保留了直接的一番来源。"
+    },
+    "sourcePages": [
+      4
+    ],
+    "tags": [
+      "孤立牌",
+      "客风"
+    ],
+    "generation": {
+      "templateId": "q-iso-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "guest-wind-and-dragon"
+    }
+  },
+  {
+    "id": "q-iso-001-msp-b",
+    "principleId": "TE-ISO-001",
+    "title": "只有风牌时",
+    "prompt": "这里只有两张风牌；结合场风和自风判断先切哪张。",
+    "hand": "789s456p68m05s1z3z2m1p",
+    "drawnTile": "1p",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "3s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-456",
+        "suit": "p",
+        "pattern": "456"
+      }
+    ],
+    "answerTiles": [
+      "3z"
+    ],
+    "explanation": {
+      "summary": "东是场风，西是客风；两者牌效相同，但东有役牌价值，所以先切西。",
+      "bestPartition": [
+        "789",
+        "456",
+        "68",
+        "55",
+        "2",
+        "1",
+        "东"
+      ],
+      "contrast": "不能把所有风牌一概当作无价值字牌，先确认场风和自风。"
+    },
+    "sourcePages": [
+      4
+    ],
+    "tags": [
+      "孤立牌",
+      "客风"
+    ],
+    "generation": {
+      "templateId": "q-iso-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "winds-only"
+    }
+  },
+  {
+    "id": "q-iso-001-pms-c",
+    "principleId": "TE-ISO-001",
+    "title": "只有箭牌时",
+    "prompt": "中和发都没有成对；只看牌效时应该如何处理？",
+    "hand": "123m456s24p05m7z6z8p9s",
+    "drawnTile": "9s",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "7m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-456",
+        "suit": "s",
+        "pattern": "456"
+      }
+    ],
+    "answerTiles": [
+      "7z",
+      "6z"
+    ],
+    "explanation": {
+      "summary": "中和发都是孤立箭牌，成刻后都有一番，当前牌效与价值完全相同，切任意一张都可以。",
+      "bestPartition": [
+        "123",
+        "456",
+        "24",
+        "55",
+        "8",
+        "9",
+        "中或发"
+      ],
+      "contrast": "箭牌名称不同不会改变受入；没有额外条件时不必强行排出高低。"
+    },
+    "sourcePages": [
+      4
+    ],
+    "tags": [
+      "孤立牌",
+      "客风"
+    ],
+    "generation": {
+      "templateId": "q-iso-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "dragons-only"
+    }
+  },
+  {
+    "id": "q-iso-001-psm-d",
+    "principleId": "TE-ISO-001",
+    "title": "只有一张客风",
+    "prompt": "字牌只有一张东；它与数牌浮牌相比谁更孤立？",
+    "hand": "789s456m68p05s1z9m2p1m",
+    "drawnTile": "1m",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "3z",
+      "doraIndicator": "3s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-456",
+        "suit": "m",
+        "pattern": "456"
+      }
+    ],
+    "answerTiles": [
+      "1z"
+    ],
+    "explanation": {
+      "summary": "东既不是场风也不是自风，只有摸到第二张才能继续中展；先切东保留数牌的顺子变化。",
+      "bestPartition": [
+        "789",
+        "456",
+        "68",
+        "55",
+        "9",
+        "2",
+        "1"
+      ],
+      "contrast": "孤立数牌仍可能从两侧形成搭子，单张客风的变化最少。"
+    },
+    "sourcePages": [
+      4
+    ],
+    "tags": [
+      "孤立牌",
+      "客风"
+    ],
+    "generation": {
+      "templateId": "q-iso-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "single-guest-wind"
+    }
+  },
+  {
+    "id": "q-iso-001-smp-e",
+    "principleId": "TE-ISO-001",
+    "title": "多张风牌的取舍",
+    "prompt": "三张不同风牌同时存在，先找出有役牌价值的一张。",
+    "hand": "123m456p24s05m1z2z3z9p",
+    "drawnTile": "9p",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "4z",
+      "doraIndicator": "7m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-456",
+        "suit": "p",
+        "pattern": "456"
+      }
+    ],
+    "answerTiles": [
+      "2z",
+      "3z"
+    ],
+    "explanation": {
+      "summary": "东是场风，南和西都是客风；只看当前饼件，南或西都应先于东离开。",
+      "bestPartition": [
+        "123",
+        "456",
+        "24",
+        "55",
+        "东",
+        "南或西",
+        "9"
+      ],
+      "contrast": "字牌数量变多时仍逐张检查身份，不要把三张风牌当成同一种价值。"
+    },
+    "sourcePages": [
+      4
+    ],
+    "tags": [
+      "孤立牌",
+      "客风"
+    ],
+    "generation": {
+      "templateId": "q-iso-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "three-winds"
+    }
+  },
+  {
+    "id": "q-iso-001-spm-f",
+    "principleId": "TE-ISO-001",
+    "title": "客风成对后价值改变",
+    "prompt": "西已经有两张；此时还应该把它当作最弱孤立牌吗？",
+    "hand": "789p456m68s05p33z2s1m",
+    "drawnTile": "1m",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "3p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-456",
+        "suit": "m",
+        "pattern": "456"
+      }
+    ],
+    "answerTiles": [
+      "2s",
+      "1m"
+    ],
+    "explanation": {
+      "summary": "西虽然是客风，但已经成对，可以直接作雀头，也只差一张成为刻子；此时应切孤立的2条或1万。",
+      "bestPartition": [
+        "789",
+        "456",
+        "68",
+        "55",
+        "西西",
+        "2或1"
+      ],
+      "contrast": "“客风先切”只适用于单张。张数改变后必须重新评价结构。"
+    },
+    "sourcePages": [
+      4
+    ],
+    "tags": [
+      "孤立牌",
+      "客风"
+    ],
+    "generation": {
+      "templateId": "q-iso-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "honor-pair"
+    }
+  },
+  {
+    "id": "q-tatsu-001",
+    "principleId": "TE-TATSU-001",
+    "title": "边张与中张搭子",
+    "prompt": "搭子已经足够，优先淘汰较弱的一组。",
+    "hand": "123p456s55p12m46m78s",
+    "drawnTile": "8s",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "3z",
+      "doraIndicator": "9p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-456",
+        "suit": "s",
+        "pattern": "456"
+      }
+    ],
+    "answerTiles": [
+      "1m"
+    ],
+    "explanation": {
+      "summary": "切1万后保留2万与46万的复合变化，受入比直接破坏中张嵌张更宽。",
+      "bestPartition": [
+        "123",
+        "456",
+        "55",
+        "2",
+        "46",
+        "78"
+      ],
+      "contrast": "靠边搭子的后续良形变化较少；中张嵌张与两面应优先保留。"
+    },
+    "sourcePages": [
+      5
+    ],
+    "tags": [
+      "搭子比较",
+      "边张"
+    ],
+    "generation": {
+      "templateId": "q-tatsu-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-tatsu-001-msp-b",
+    "principleId": "TE-TATSU-001",
+    "title": "边张与白张搭子",
+    "prompt": "搭子已经足够，优先淘汰较弱的一组。",
+    "hand": "789s456p55s89m46m23p",
+    "drawnTile": "2p",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "4z",
+      "doraIndicator": "1s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-456",
+        "suit": "p",
+        "pattern": "456"
+      }
+    ],
+    "answerTiles": [
+      "9m"
+    ],
+    "explanation": {
+      "summary": "切9万后保留8万与46万的复合变化，受入比直接破坏白张嵌张更宽。",
+      "bestPartition": [
+        "789",
+        "456",
+        "55",
+        "8",
+        "46",
+        "23"
+      ],
+      "contrast": "靠边搭子的后续良形变化较少；白张嵌张与两面应优先保留。"
+    },
+    "sourcePages": [
+      5
+    ],
+    "tags": [
+      "搭子比较",
+      "边张"
+    ],
+    "generation": {
+      "templateId": "q-tatsu-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-tatsu-001-pms-c",
+    "principleId": "TE-TATSU-001",
+    "title": "边张与发张搭子",
+    "prompt": "搭子已经足够，优先淘汰较弱的一组。",
+    "hand": "123m456s55m12p46p78s",
+    "drawnTile": "8s",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "4z",
+      "doraIndicator": "9m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-456",
+        "suit": "s",
+        "pattern": "456"
+      }
+    ],
+    "answerTiles": [
+      "1p"
+    ],
+    "explanation": {
+      "summary": "切1饼后保留2饼与46饼的复合变化，受入比直接破坏发张嵌张更宽。",
+      "bestPartition": [
+        "123",
+        "456",
+        "55",
+        "2",
+        "46",
+        "78"
+      ],
+      "contrast": "靠边搭子的后续良形变化较少；发张嵌张与两面应优先保留。"
+    },
+    "sourcePages": [
+      5
+    ],
+    "tags": [
+      "搭子比较",
+      "边张"
+    ],
+    "generation": {
+      "templateId": "q-tatsu-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-tatsu-001-psm-d",
+    "principleId": "TE-TATSU-001",
+    "title": "边张与发张搭子",
+    "prompt": "搭子已经足够，优先淘汰较弱的一组。",
+    "hand": "789s456m55s89p46p23m",
+    "drawnTile": "2m",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "3z",
+      "doraIndicator": "1s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-456",
+        "suit": "m",
+        "pattern": "456"
+      }
+    ],
+    "answerTiles": [
+      "9p"
+    ],
+    "explanation": {
+      "summary": "切9饼后保留8饼与46饼的复合变化，受入比直接破坏发张嵌张更宽。",
+      "bestPartition": [
+        "789",
+        "456",
+        "55",
+        "8",
+        "46",
+        "23"
+      ],
+      "contrast": "靠边搭子的后续良形变化较少；发张嵌张与两面应优先保留。"
+    },
+    "sourcePages": [
+      5
+    ],
+    "tags": [
+      "搭子比较",
+      "边张"
+    ],
+    "generation": {
+      "templateId": "q-tatsu-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-tatsu-001-smp-e",
+    "principleId": "TE-TATSU-001",
+    "title": "边张与白张搭子",
+    "prompt": "搭子已经足够，优先淘汰较弱的一组。",
+    "hand": "123m456p55m12s46s78p",
+    "drawnTile": "8p",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "4z",
+      "doraIndicator": "9m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-456",
+        "suit": "p",
+        "pattern": "456"
+      }
+    ],
+    "answerTiles": [
+      "1s"
+    ],
+    "explanation": {
+      "summary": "切1条后保留2条与46条的复合变化，受入比直接破坏白张嵌张更宽。",
+      "bestPartition": [
+        "123",
+        "456",
+        "55",
+        "2",
+        "46",
+        "78"
+      ],
+      "contrast": "靠边搭子的后续良形变化较少；白张嵌张与两面应优先保留。"
+    },
+    "sourcePages": [
+      5
+    ],
+    "tags": [
+      "搭子比较",
+      "边张"
+    ],
+    "generation": {
+      "templateId": "q-tatsu-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-tatsu-001-spm-f",
+    "principleId": "TE-TATSU-001",
+    "title": "边张与中张搭子",
+    "prompt": "搭子已经足够，优先淘汰较弱的一组。",
+    "hand": "789p456m55p89s46s23m",
+    "drawnTile": "2m",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "3z",
+      "doraIndicator": "1p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-456",
+        "suit": "m",
+        "pattern": "456"
+      }
+    ],
+    "answerTiles": [
+      "9s"
+    ],
+    "explanation": {
+      "summary": "切9条后保留8条与46条的复合变化，受入比直接破坏中张嵌张更宽。",
+      "bestPartition": [
+        "789",
+        "456",
+        "55",
+        "8",
+        "46",
+        "23"
+      ],
+      "contrast": "靠边搭子的后续良形变化较少；中张嵌张与两面应优先保留。"
+    },
+    "sourcePages": [
+      5
+    ],
+    "tags": [
+      "搭子比较",
+      "边张"
+    ],
+    "generation": {
+      "templateId": "q-tatsu-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  },
+  {
+    "id": "q-4556-001",
+    "principleId": "TE-COMPLEX-4556",
+    "title": "不要拆散中膨形",
+    "prompt": "先标记4556，再决定哪张浮牌应该离开。",
+    "hand": "123p789s55z4056m7p8s",
+    "drawnTile": "8s",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "2p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "4556"
+      }
+    ],
+    "answerTiles": [
+      "8s"
+    ],
+    "explanation": {
+      "summary": "4556按45与56分割，可以接受3、4、6、7万；先切孤立8条。",
+      "bestPartition": [
+        "123",
+        "789",
+        "白白",
+        "45",
+        "56",
+        "7饼"
+      ],
+      "contrast": "切5万会把宽广的中膨形缩成普通形状，损失多种进张。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "4556"
+    ],
+    "generation": {
+      "templateId": "q-4556-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-4556-001-msp-b",
+    "principleId": "TE-COMPLEX-4556",
+    "title": "不要拆散白膨形",
+    "prompt": "先标记4556，再决定哪张浮牌应该离开。",
+    "hand": "789s123p66z4056m3s2p",
+    "drawnTile": "2p",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "8s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "4556"
+      }
+    ],
+    "answerTiles": [
+      "2p"
+    ],
+    "explanation": {
+      "summary": "4556按56与45分割，可以接受7、6、4、3万；先切孤立2饼。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "56",
+        "45",
+        "3条"
+      ],
+      "contrast": "切5万会把宽广的白膨形缩成普通形状，损失多种进张。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "4556"
+    ],
+    "generation": {
+      "templateId": "q-4556-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-4556-001-pms-c",
+    "principleId": "TE-COMPLEX-4556",
+    "title": "不要拆散发膨形",
+    "prompt": "先标记4556，再决定哪张浮牌应该离开。",
+    "hand": "123m789s77z4056p7m8s",
+    "drawnTile": "8s",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "2m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "4556"
+      }
+    ],
+    "answerTiles": [
+      "8s"
+    ],
+    "explanation": {
+      "summary": "4556按45与56分割，可以接受3、4、6、7饼；先切孤立8条。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "45",
+        "56",
+        "7万"
+      ],
+      "contrast": "切5饼会把宽广的发膨形缩成普通形状，损失多种进张。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "4556"
+    ],
+    "generation": {
+      "templateId": "q-4556-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-4556-001-psm-d",
+    "principleId": "TE-COMPLEX-4556",
+    "title": "不要拆散发膨形",
+    "prompt": "先标记4556，再决定哪张浮牌应该离开。",
+    "hand": "789s123m55z4056p3s2m",
+    "drawnTile": "2m",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "8s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "4556"
+      }
+    ],
+    "answerTiles": [
+      "2m"
+    ],
+    "explanation": {
+      "summary": "4556按56与45分割，可以接受7、6、4、3饼；先切孤立2万。",
+      "bestPartition": [
+        "789",
+        "123",
+        "白白",
+        "56",
+        "45",
+        "3条"
+      ],
+      "contrast": "切5饼会把宽广的发膨形缩成普通形状，损失多种进张。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "4556"
+    ],
+    "generation": {
+      "templateId": "q-4556-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-4556-001-smp-e",
+    "principleId": "TE-COMPLEX-4556",
+    "title": "不要拆散白膨形",
+    "prompt": "先标记4556，再决定哪张浮牌应该离开。",
+    "hand": "123m789p77z4056s7m8p",
+    "drawnTile": "8p",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "2m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "4556"
+      }
+    ],
+    "answerTiles": [
+      "8p"
+    ],
+    "explanation": {
+      "summary": "4556按45与56分割，可以接受3、4、6、7条；先切孤立8饼。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "45",
+        "56",
+        "7万"
+      ],
+      "contrast": "切5条会把宽广的白膨形缩成普通形状，损失多种进张。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "4556"
+    ],
+    "generation": {
+      "templateId": "q-4556-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-4556-001-spm-f",
+    "principleId": "TE-COMPLEX-4556",
+    "title": "不要拆散中膨形",
+    "prompt": "先标记4556，再决定哪张浮牌应该离开。",
+    "hand": "789p123m66z4056s3p2m",
+    "drawnTile": "2m",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "8p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "4556"
+      }
+    ],
+    "answerTiles": [
+      "2m"
+    ],
+    "explanation": {
+      "summary": "4556按56与45分割，可以接受7、6、4、3条；先切孤立2万。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "56",
+        "45",
+        "3饼"
+      ],
+      "contrast": "切5条会把宽广的中膨形缩成普通形状，损失多种进张。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "4556"
+    ],
+    "generation": {
+      "templateId": "q-4556-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  },
+  {
+    "id": "q-4567-001",
+    "principleId": "TE-COMPLEX-4567",
+    "title": "四连形的宽度",
+    "prompt": "保留能接受多种变化的四连形。",
+    "hand": "123p789s55z4567m2p9s",
+    "drawnTile": "9s",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "4z",
+      "doraIndicator": "1p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "4567"
+      }
+    ],
+    "answerTiles": [
+      "9s"
+    ],
+    "explanation": {
+      "summary": "4567保留45与67两个两面。2饼是宝牌，牌效相同时应保留宝牌，因此切9条。",
+      "bestPartition": [
+        "123",
+        "789",
+        "白白",
+        "45",
+        "67",
+        "宝牌2饼"
+      ],
+      "contrast": "切2饼的受入相同，但会少两张宝牌价值。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "四连形",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4567-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-4567-001-msp-b",
+    "principleId": "TE-COMPLEX-4567",
+    "title": "四连形的宽度",
+    "prompt": "保留能接受多种变化的四连形。",
+    "hand": "789s123p66z3456m8s1p",
+    "drawnTile": "1p",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "3z",
+      "doraIndicator": "9s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "3456"
+      }
+    ],
+    "answerTiles": [
+      "1p"
+    ],
+    "explanation": {
+      "summary": "3456保留56与34两个两面。8条是宝牌，牌效相同时应保留宝牌，因此切1饼。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "56",
+        "34",
+        "宝牌8条"
+      ],
+      "contrast": "切8条的受入相同，但会少两张宝牌价值。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "四连形",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4567-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-4567-001-pms-c",
+    "principleId": "TE-COMPLEX-4567",
+    "title": "四连形的宽度",
+    "prompt": "保留能接受多种变化的四连形。",
+    "hand": "123m789s77z4567p2m9s",
+    "drawnTile": "9s",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "3z",
+      "doraIndicator": "1m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "4567"
+      }
+    ],
+    "answerTiles": [
+      "9s"
+    ],
+    "explanation": {
+      "summary": "4567保留45与67两个两面。2万是宝牌，牌效相同时应保留宝牌，因此切9条。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "45",
+        "67",
+        "宝牌2万"
+      ],
+      "contrast": "切2万的受入相同，但会少两张宝牌价值。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "四连形",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4567-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-4567-001-psm-d",
+    "principleId": "TE-COMPLEX-4567",
+    "title": "四连形的宽度",
+    "prompt": "保留能接受多种变化的四连形。",
+    "hand": "789s123m55z3456p8s1m",
+    "drawnTile": "1m",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "4z",
+      "doraIndicator": "9s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "3456"
+      }
+    ],
+    "answerTiles": [
+      "1m"
+    ],
+    "explanation": {
+      "summary": "3456保留56与34两个两面。8条是宝牌，牌效相同时应保留宝牌，因此切1万。",
+      "bestPartition": [
+        "789",
+        "123",
+        "白白",
+        "56",
+        "34",
+        "宝牌8条"
+      ],
+      "contrast": "切8条的受入相同，但会少两张宝牌价值。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "四连形",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4567-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-4567-001-smp-e",
+    "principleId": "TE-COMPLEX-4567",
+    "title": "四连形的宽度",
+    "prompt": "保留能接受多种变化的四连形。",
+    "hand": "123m789p77z4567s2m9p",
+    "drawnTile": "9p",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "3z",
+      "doraIndicator": "1m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "4567"
+      }
+    ],
+    "answerTiles": [
+      "9p"
+    ],
+    "explanation": {
+      "summary": "4567保留45与67两个两面。2万是宝牌，牌效相同时应保留宝牌，因此切9饼。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "45",
+        "67",
+        "宝牌2万"
+      ],
+      "contrast": "切2万的受入相同，但会少两张宝牌价值。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "四连形",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4567-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-4567-001-spm-f",
+    "principleId": "TE-COMPLEX-4567",
+    "title": "四连形的宽度",
+    "prompt": "保留能接受多种变化的四连形。",
+    "hand": "789p123m66z3456s8p1m",
+    "drawnTile": "1m",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "4z",
+      "doraIndicator": "9p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "3456"
+      }
+    ],
+    "answerTiles": [
+      "1m"
+    ],
+    "explanation": {
+      "summary": "3456保留56与34两个两面。8饼是宝牌，牌效相同时应保留宝牌，因此切1万。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "56",
+        "34",
+        "宝牌8饼"
+      ],
+      "contrast": "切8饼的受入相同，但会少两张宝牌价值。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "四连形",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4567-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  },
+  {
+    "id": "q-4456-001",
+    "principleId": "TE-COMPLEX-4456",
+    "title": "对子兼两面",
+    "prompt": "4456可以同时承担雀头与搭子候补。",
+    "hand": "123p789s55z4456m2p9s",
+    "drawnTile": "2p",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "3z",
+      "doraIndicator": "8s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "4456"
+      }
+    ],
+    "answerTiles": [
+      "2p"
+    ],
+    "explanation": {
+      "summary": "4456可看成44对子与56两面，兼顾雀头和面子候补。9条是宝牌，所以切2饼。",
+      "bestPartition": [
+        "123",
+        "789",
+        "白白",
+        "44",
+        "56",
+        "宝牌9条"
+      ],
+      "contrast": "切4万会破坏复合形；切9条则在同牌效下损失宝牌。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "亚两面",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4456-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-4456-001-msp-b",
+    "principleId": "TE-COMPLEX-4456",
+    "title": "对子兼两面",
+    "prompt": "4566可以同时承担雀头与搭子候补。",
+    "hand": "789s123p66z4566m8s1p",
+    "drawnTile": "8s",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "4z",
+      "doraIndicator": "2p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "4566"
+      }
+    ],
+    "answerTiles": [
+      "8s"
+    ],
+    "explanation": {
+      "summary": "4566可看成66对子与45两面，兼顾雀头和面子候补。1饼是宝牌，所以切8条。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "66",
+        "45",
+        "宝牌1饼"
+      ],
+      "contrast": "切6万会破坏复合形；切1饼则在同牌效下损失宝牌。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "亚两面",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4456-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-4456-001-pms-c",
+    "principleId": "TE-COMPLEX-4456",
+    "title": "对子兼两面",
+    "prompt": "4456可以同时承担雀头与搭子候补。",
+    "hand": "123m789s77z4456p2m9s",
+    "drawnTile": "2m",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "4z",
+      "doraIndicator": "8s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "4456"
+      }
+    ],
+    "answerTiles": [
+      "2m"
+    ],
+    "explanation": {
+      "summary": "4456可看成44对子与56两面，兼顾雀头和面子候补。9条是宝牌，所以切2万。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "44",
+        "56",
+        "宝牌9条"
+      ],
+      "contrast": "切4饼会破坏复合形；切9条则在同牌效下损失宝牌。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "亚两面",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4456-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-4456-001-psm-d",
+    "principleId": "TE-COMPLEX-4456",
+    "title": "对子兼两面",
+    "prompt": "4566可以同时承担雀头与搭子候补。",
+    "hand": "789s123m55z4566p8s1m",
+    "drawnTile": "8s",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "3z",
+      "doraIndicator": "2m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "4566"
+      }
+    ],
+    "answerTiles": [
+      "8s"
+    ],
+    "explanation": {
+      "summary": "4566可看成66对子与45两面，兼顾雀头和面子候补。1万是宝牌，所以切8条。",
+      "bestPartition": [
+        "789",
+        "123",
+        "白白",
+        "66",
+        "45",
+        "宝牌1万"
+      ],
+      "contrast": "切6饼会破坏复合形；切1万则在同牌效下损失宝牌。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "亚两面",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4456-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-4456-001-smp-e",
+    "principleId": "TE-COMPLEX-4456",
+    "title": "对子兼两面",
+    "prompt": "4456可以同时承担雀头与搭子候补。",
+    "hand": "123m789p77z4456s2m9p",
+    "drawnTile": "2m",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "4z",
+      "doraIndicator": "8p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "4456"
+      }
+    ],
+    "answerTiles": [
+      "2m"
+    ],
+    "explanation": {
+      "summary": "4456可看成44对子与56两面，兼顾雀头和面子候补。9饼是宝牌，所以切2万。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "44",
+        "56",
+        "宝牌9饼"
+      ],
+      "contrast": "切4条会破坏复合形；切9饼则在同牌效下损失宝牌。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "亚两面",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4456-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-4456-001-spm-f",
+    "principleId": "TE-COMPLEX-4456",
+    "title": "对子兼两面",
+    "prompt": "4566可以同时承担雀头与搭子候补。",
+    "hand": "789p123m66z4566s8p1m",
+    "drawnTile": "8p",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "3z",
+      "doraIndicator": "2m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "4566"
+      }
+    ],
+    "answerTiles": [
+      "8p"
+    ],
+    "explanation": {
+      "summary": "4566可看成66对子与45两面，兼顾雀头和面子候补。1万是宝牌，所以切8饼。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "66",
+        "45",
+        "宝牌1万"
+      ],
+      "contrast": "切6条会破坏复合形；切1万则在同牌效下损失宝牌。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "亚两面",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4456-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  },
+  {
+    "id": "q-3567-001",
+    "principleId": "TE-COMPLEX-3567",
+    "title": "跳一形也有宽度",
+    "prompt": "比较复合形与普通浮牌的后续变化。",
+    "hand": "123p789s55z3567m2p9s",
+    "drawnTile": "2p",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "8s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "3567"
+      }
+    ],
+    "answerTiles": [
+      "2p"
+    ],
+    "explanation": {
+      "summary": "3567按35与67保留时有多种进张；9条又是宝牌，因此切2饼。",
+      "bestPartition": [
+        "123",
+        "789",
+        "白白",
+        "35",
+        "67",
+        "宝牌9条"
+      ],
+      "contrast": "直接切3万会减少复合形的独有进张。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "跳一形",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-3567-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-3567-001-msp-b",
+    "principleId": "TE-COMPLEX-3567",
+    "title": "跳一形也有宽度",
+    "prompt": "比较复合形与普通浮牌的后续变化。",
+    "hand": "789s123p66z3457m8s1p",
+    "drawnTile": "8s",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "2p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "3457"
+      }
+    ],
+    "answerTiles": [
+      "8s"
+    ],
+    "explanation": {
+      "summary": "3457按57与34保留时有多种进张；1饼又是宝牌，因此切8条。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "57",
+        "34",
+        "宝牌1饼"
+      ],
+      "contrast": "直接切7万会减少复合形的独有进张。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "跳一形",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-3567-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-3567-001-pms-c",
+    "principleId": "TE-COMPLEX-3567",
+    "title": "跳一形也有宽度",
+    "prompt": "比较复合形与普通浮牌的后续变化。",
+    "hand": "123m789s77z3567p2m9s",
+    "drawnTile": "2m",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "8s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "3567"
+      }
+    ],
+    "answerTiles": [
+      "2m"
+    ],
+    "explanation": {
+      "summary": "3567按35与67保留时有多种进张；9条又是宝牌，因此切2万。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "35",
+        "67",
+        "宝牌9条"
+      ],
+      "contrast": "直接切3饼会减少复合形的独有进张。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "跳一形",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-3567-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-3567-001-psm-d",
+    "principleId": "TE-COMPLEX-3567",
+    "title": "跳一形也有宽度",
+    "prompt": "比较复合形与普通浮牌的后续变化。",
+    "hand": "789s123m55z3457p8s1m",
+    "drawnTile": "8s",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "2m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "3457"
+      }
+    ],
+    "answerTiles": [
+      "8s"
+    ],
+    "explanation": {
+      "summary": "3457按57与34保留时有多种进张；1万又是宝牌，因此切8条。",
+      "bestPartition": [
+        "789",
+        "123",
+        "白白",
+        "57",
+        "34",
+        "宝牌1万"
+      ],
+      "contrast": "直接切7饼会减少复合形的独有进张。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "跳一形",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-3567-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-3567-001-smp-e",
+    "principleId": "TE-COMPLEX-3567",
+    "title": "跳一形也有宽度",
+    "prompt": "比较复合形与普通浮牌的后续变化。",
+    "hand": "123m789p77z3567s2m9p",
+    "drawnTile": "2m",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "8p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "3567"
+      }
+    ],
+    "answerTiles": [
+      "2m"
+    ],
+    "explanation": {
+      "summary": "3567按35与67保留时有多种进张；9饼又是宝牌，因此切2万。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "35",
+        "67",
+        "宝牌9饼"
+      ],
+      "contrast": "直接切3条会减少复合形的独有进张。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "跳一形",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-3567-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-3567-001-spm-f",
+    "principleId": "TE-COMPLEX-3567",
+    "title": "跳一形也有宽度",
+    "prompt": "比较复合形与普通浮牌的后续变化。",
+    "hand": "789p123m66z3457s8p1m",
+    "drawnTile": "8p",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "2m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "3457"
+      }
+    ],
+    "answerTiles": [
+      "8p"
+    ],
+    "explanation": {
+      "summary": "3457按57与34保留时有多种进张；1万又是宝牌，因此切8饼。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "57",
+        "34",
+        "宝牌1万"
+      ],
+      "contrast": "直接切7条会减少复合形的独有进张。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "跳一形",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-3567-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  },
+  {
+    "id": "q-4445-001",
+    "principleId": "TE-COMPLEX-4445",
+    "title": "刻子旁的一张牌",
+    "prompt": "未听牌时，4445并不能直接提供两个面子。",
+    "hand": "123p789s55z4445m2p9s",
+    "drawnTile": "9s",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "1z",
+      "doraIndicator": "8s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "4445"
+      }
+    ],
+    "answerTiles": [
+      "2p"
+    ],
+    "explanation": {
+      "summary": "4445在未听牌时主要是444刻子加5万浮牌，不能当成两个面子。保留宝牌9条，切2饼。",
+      "bestPartition": [
+        "123",
+        "789",
+        "白白",
+        "444",
+        "5",
+        "宝牌9条"
+      ],
+      "contrast": "切5万也维持向听，但受入较少；切宝牌9条没有必要。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "刻子",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4445-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-4445-001-msp-b",
+    "principleId": "TE-COMPLEX-4445",
+    "title": "刻子旁的一张牌",
+    "prompt": "未听牌时，5666并不能直接提供两个面子。",
+    "hand": "789s123p66z5666m8s1p",
+    "drawnTile": "1p",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "1z",
+      "doraIndicator": "2p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "5666"
+      }
+    ],
+    "answerTiles": [
+      "8s"
+    ],
+    "explanation": {
+      "summary": "5666在未听牌时主要是666刻子加5万浮牌，不能当成两个面子。保留宝牌1饼，切8条。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "666",
+        "5",
+        "宝牌1饼"
+      ],
+      "contrast": "切5万也维持向听，但受入较少；切宝牌1饼没有必要。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "刻子",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4445-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-4445-001-pms-c",
+    "principleId": "TE-COMPLEX-4445",
+    "title": "刻子旁的一张牌",
+    "prompt": "未听牌时，4445并不能直接提供两个面子。",
+    "hand": "123m789s77z4445p2m9s",
+    "drawnTile": "9s",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "2z",
+      "doraIndicator": "8s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "4445"
+      }
+    ],
+    "answerTiles": [
+      "2m"
+    ],
+    "explanation": {
+      "summary": "4445在未听牌时主要是444刻子加5饼浮牌，不能当成两个面子。保留宝牌9条，切2万。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "444",
+        "5",
+        "宝牌9条"
+      ],
+      "contrast": "切5饼也维持向听，但受入较少；切宝牌9条没有必要。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "刻子",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4445-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-4445-001-psm-d",
+    "principleId": "TE-COMPLEX-4445",
+    "title": "刻子旁的一张牌",
+    "prompt": "未听牌时，5666并不能直接提供两个面子。",
+    "hand": "789s123m55z5666p8s1m",
+    "drawnTile": "1m",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "2z",
+      "doraIndicator": "2m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "5666"
+      }
+    ],
+    "answerTiles": [
+      "8s"
+    ],
+    "explanation": {
+      "summary": "5666在未听牌时主要是666刻子加5饼浮牌，不能当成两个面子。保留宝牌1万，切8条。",
+      "bestPartition": [
+        "789",
+        "123",
+        "白白",
+        "666",
+        "5",
+        "宝牌1万"
+      ],
+      "contrast": "切5饼也维持向听，但受入较少；切宝牌1万没有必要。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "刻子",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4445-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-4445-001-smp-e",
+    "principleId": "TE-COMPLEX-4445",
+    "title": "刻子旁的一张牌",
+    "prompt": "未听牌时，4445并不能直接提供两个面子。",
+    "hand": "123m789p77z4445s2m9p",
+    "drawnTile": "9p",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "1z",
+      "doraIndicator": "8p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "4445"
+      }
+    ],
+    "answerTiles": [
+      "2m"
+    ],
+    "explanation": {
+      "summary": "4445在未听牌时主要是444刻子加5条浮牌，不能当成两个面子。保留宝牌9饼，切2万。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "444",
+        "5",
+        "宝牌9饼"
+      ],
+      "contrast": "切5条也维持向听，但受入较少；切宝牌9饼没有必要。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "刻子",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4445-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-4445-001-spm-f",
+    "principleId": "TE-COMPLEX-4445",
+    "title": "刻子旁的一张牌",
+    "prompt": "未听牌时，5666并不能直接提供两个面子。",
+    "hand": "789p123m66z5666s8p1m",
+    "drawnTile": "1m",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "2z",
+      "doraIndicator": "2m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "5666"
+      }
+    ],
+    "answerTiles": [
+      "8p"
+    ],
+    "explanation": {
+      "summary": "5666在未听牌时主要是666刻子加5条浮牌，不能当成两个面子。保留宝牌1万，切8饼。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "666",
+        "5",
+        "宝牌1万"
+      ],
+      "contrast": "切5条也维持向听，但受入较少；切宝牌1万没有必要。"
+    },
+    "sourcePages": [
+      6
+    ],
+    "tags": [
+      "复合形",
+      "刻子",
+      "宝牌影响"
+    ],
+    "generation": {
+      "templateId": "q-4445-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  },
+  {
+    "id": "q-overlap-001",
+    "principleId": "TE-OVERLAP-001",
+    "title": "找出重复的有效牌",
+    "prompt": "两个搭子都需要同一张牌时，表面的受入会骗人。",
+    "hand": "345m777p1245s22z89m",
+    "drawnTile": "9m",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "4z",
+      "doraIndicator": "1p"
+    },
+    "segments": [
+      {
+        "id": "man-345",
+        "suit": "m",
+        "pattern": "345"
+      },
+      {
+        "id": "pin-777",
+        "suit": "p",
+        "pattern": "777"
+      }
+    ],
+    "answerTiles": [
+      "1s",
+      "2s"
+    ],
+    "explanation": {
+      "summary": "12条与45条共享3条进张，拆12条不会失去3条这一路受入。",
+      "bestPartition": [
+        "345",
+        "777",
+        "南南",
+        "45",
+        "89"
+      ],
+      "contrast": "拆45条或89万会损失各自独有的有效牌。"
+    },
+    "sourcePages": [
+      7
+    ],
+    "tags": [
+      "有效牌重复"
+    ],
+    "generation": {
+      "templateId": "q-overlap-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-overlap-001-msp-b",
+    "principleId": "TE-OVERLAP-001",
+    "title": "找出重复的有效牌",
+    "prompt": "两个搭子都需要同一张牌时，表面的受入会骗人。",
+    "hand": "567m333s5689p22z12m",
+    "drawnTile": "1m",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "3z",
+      "doraIndicator": "9s"
+    },
+    "segments": [
+      {
+        "id": "man-345",
+        "suit": "m",
+        "pattern": "567"
+      },
+      {
+        "id": "pin-777",
+        "suit": "s",
+        "pattern": "333"
+      }
+    ],
+    "answerTiles": [
+      "9p",
+      "8p"
+    ],
+    "explanation": {
+      "summary": "89饼与56饼共享7饼进张，拆89饼不会失去7饼这一路受入。",
+      "bestPartition": [
+        "567",
+        "333",
+        "南南",
+        "56",
+        "12"
+      ],
+      "contrast": "拆56饼或12万会损失各自独有的有效牌。"
+    },
+    "sourcePages": [
+      7
+    ],
+    "tags": [
+      "有效牌重复"
+    ],
+    "generation": {
+      "templateId": "q-overlap-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-overlap-001-pms-c",
+    "principleId": "TE-OVERLAP-001",
+    "title": "找出重复的有效牌",
+    "prompt": "两个搭子都需要同一张牌时，表面的受入会骗人。",
+    "hand": "345p777m1245s11z89p",
+    "drawnTile": "9p",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "3z",
+      "doraIndicator": "1m"
+    },
+    "segments": [
+      {
+        "id": "man-345",
+        "suit": "p",
+        "pattern": "345"
+      },
+      {
+        "id": "pin-777",
+        "suit": "m",
+        "pattern": "777"
+      }
+    ],
+    "answerTiles": [
+      "1s",
+      "2s"
+    ],
+    "explanation": {
+      "summary": "12条与45条共享3条进张，拆12条不会失去3条这一路受入。",
+      "bestPartition": [
+        "345",
+        "777",
+        "东东",
+        "45",
+        "89"
+      ],
+      "contrast": "拆45条或89饼会损失各自独有的有效牌。"
+    },
+    "sourcePages": [
+      7
+    ],
+    "tags": [
+      "有效牌重复"
+    ],
+    "generation": {
+      "templateId": "q-overlap-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-overlap-001-psm-d",
+    "principleId": "TE-OVERLAP-001",
+    "title": "找出重复的有效牌",
+    "prompt": "两个搭子都需要同一张牌时，表面的受入会骗人。",
+    "hand": "567p333s5689m11z12p",
+    "drawnTile": "1p",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "4z",
+      "doraIndicator": "9s"
+    },
+    "segments": [
+      {
+        "id": "man-345",
+        "suit": "p",
+        "pattern": "567"
+      },
+      {
+        "id": "pin-777",
+        "suit": "s",
+        "pattern": "333"
+      }
+    ],
+    "answerTiles": [
+      "9m",
+      "8m"
+    ],
+    "explanation": {
+      "summary": "89万与56万共享7万进张，拆89万不会失去7万这一路受入。",
+      "bestPartition": [
+        "567",
+        "333",
+        "东东",
+        "56",
+        "12"
+      ],
+      "contrast": "拆56万或12饼会损失各自独有的有效牌。"
+    },
+    "sourcePages": [
+      7
+    ],
+    "tags": [
+      "有效牌重复"
+    ],
+    "generation": {
+      "templateId": "q-overlap-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-overlap-001-smp-e",
+    "principleId": "TE-OVERLAP-001",
+    "title": "找出重复的有效牌",
+    "prompt": "两个搭子都需要同一张牌时，表面的受入会骗人。",
+    "hand": "345s777m1245p22z89s",
+    "drawnTile": "9s",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "3z",
+      "doraIndicator": "1m"
+    },
+    "segments": [
+      {
+        "id": "man-345",
+        "suit": "s",
+        "pattern": "345"
+      },
+      {
+        "id": "pin-777",
+        "suit": "m",
+        "pattern": "777"
+      }
+    ],
+    "answerTiles": [
+      "1p",
+      "2p"
+    ],
+    "explanation": {
+      "summary": "12饼与45饼共享3饼进张，拆12饼不会失去3饼这一路受入。",
+      "bestPartition": [
+        "345",
+        "777",
+        "南南",
+        "45",
+        "89"
+      ],
+      "contrast": "拆45饼或89条会损失各自独有的有效牌。"
+    },
+    "sourcePages": [
+      7
+    ],
+    "tags": [
+      "有效牌重复"
+    ],
+    "generation": {
+      "templateId": "q-overlap-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-overlap-001-spm-f",
+    "principleId": "TE-OVERLAP-001",
+    "title": "找出重复的有效牌",
+    "prompt": "两个搭子都需要同一张牌时，表面的受入会骗人。",
+    "hand": "567s333p5689m11z12s",
+    "drawnTile": "1s",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "4z",
+      "doraIndicator": "9p"
+    },
+    "segments": [
+      {
+        "id": "man-345",
+        "suit": "s",
+        "pattern": "567"
+      },
+      {
+        "id": "pin-777",
+        "suit": "p",
+        "pattern": "333"
+      }
+    ],
+    "answerTiles": [
+      "9m",
+      "8m"
+    ],
+    "explanation": {
+      "summary": "89万与56万共享7万进张，拆89万不会失去7万这一路受入。",
+      "bestPartition": [
+        "567",
+        "333",
+        "东东",
+        "56",
+        "12"
+      ],
+      "contrast": "拆56万或12条会损失各自独有的有效牌。"
+    },
+    "sourcePages": [
+      7
+    ],
+    "tags": [
+      "有效牌重复"
+    ],
+    "generation": {
+      "templateId": "q-overlap-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  },
+  {
+    "id": "q-gap-001",
+    "principleId": "TE-GAP-001",
+    "title": "两间搭仍有价值",
+    "prompt": "搭子还不足时，不要因为它不是连续牌就轻易拆掉。",
+    "hand": "123p789s55z246m68p4s",
+    "drawnTile": "4s",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "3z",
+      "doraIndicator": "2m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "246"
+      }
+    ],
+    "answerTiles": [
+      "4s"
+    ],
+    "explanation": {
+      "summary": "246虽不是连续牌，但可以保留24或46嵌张；搭子不足时应先切孤立4条。",
+      "bestPartition": [
+        "123",
+        "789",
+        "白白",
+        "24",
+        "6",
+        "68"
+      ],
+      "contrast": "切2万或6万会让两间搭失去一侧变化。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "两间搭"
+    ],
+    "generation": {
+      "templateId": "q-gap-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-gap-001-msp-b",
+    "principleId": "TE-GAP-001",
+    "title": "两间搭仍有价值",
+    "prompt": "搭子还不足时，不要因为它不是连续牌就轻易拆掉。",
+    "hand": "789s123p66z468m24s6p",
+    "drawnTile": "6p",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "4z",
+      "doraIndicator": "8m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "468"
+      }
+    ],
+    "answerTiles": [
+      "6p"
+    ],
+    "explanation": {
+      "summary": "468虽不是连续牌，但可以保留68或46嵌张；搭子不足时应先切孤立6饼。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "68",
+        "4",
+        "24"
+      ],
+      "contrast": "切8万或4万会让两间搭失去一侧变化。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "两间搭"
+    ],
+    "generation": {
+      "templateId": "q-gap-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-gap-001-pms-c",
+    "principleId": "TE-GAP-001",
+    "title": "两间搭仍有价值",
+    "prompt": "搭子还不足时，不要因为它不是连续牌就轻易拆掉。",
+    "hand": "123m789s77z246p68m4s",
+    "drawnTile": "4s",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "4z",
+      "doraIndicator": "2p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "246"
+      }
+    ],
+    "answerTiles": [
+      "4s"
+    ],
+    "explanation": {
+      "summary": "246虽不是连续牌，但可以保留24或46嵌张；搭子不足时应先切孤立4条。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "24",
+        "6",
+        "68"
+      ],
+      "contrast": "切2饼或6饼会让两间搭失去一侧变化。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "两间搭"
+    ],
+    "generation": {
+      "templateId": "q-gap-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-gap-001-psm-d",
+    "principleId": "TE-GAP-001",
+    "title": "两间搭仍有价值",
+    "prompt": "搭子还不足时，不要因为它不是连续牌就轻易拆掉。",
+    "hand": "789s123m55z468p24s6m",
+    "drawnTile": "6m",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "3z",
+      "doraIndicator": "8p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "468"
+      }
+    ],
+    "answerTiles": [
+      "6m"
+    ],
+    "explanation": {
+      "summary": "468虽不是连续牌，但可以保留68或46嵌张；搭子不足时应先切孤立6万。",
+      "bestPartition": [
+        "789",
+        "123",
+        "白白",
+        "68",
+        "4",
+        "24"
+      ],
+      "contrast": "切8饼或4饼会让两间搭失去一侧变化。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "两间搭"
+    ],
+    "generation": {
+      "templateId": "q-gap-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-gap-001-smp-e",
+    "principleId": "TE-GAP-001",
+    "title": "两间搭仍有价值",
+    "prompt": "搭子还不足时，不要因为它不是连续牌就轻易拆掉。",
+    "hand": "123m789p77z246s68m4p",
+    "drawnTile": "4p",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "4z",
+      "doraIndicator": "2s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "246"
+      }
+    ],
+    "answerTiles": [
+      "4p"
+    ],
+    "explanation": {
+      "summary": "246虽不是连续牌，但可以保留24或46嵌张；搭子不足时应先切孤立4饼。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "24",
+        "6",
+        "68"
+      ],
+      "contrast": "切2条或6条会让两间搭失去一侧变化。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "两间搭"
+    ],
+    "generation": {
+      "templateId": "q-gap-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-gap-001-spm-f",
+    "principleId": "TE-GAP-001",
+    "title": "两间搭仍有价值",
+    "prompt": "搭子还不足时，不要因为它不是连续牌就轻易拆掉。",
+    "hand": "789p123m66z468s24p6m",
+    "drawnTile": "6m",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "3z",
+      "doraIndicator": "8s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "468"
+      }
+    ],
+    "answerTiles": [
+      "6m"
+    ],
+    "explanation": {
+      "summary": "468虽不是连续牌，但可以保留68或46嵌张；搭子不足时应先切孤立6万。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "68",
+        "4",
+        "24"
+      ],
+      "contrast": "切8条或4条会让两间搭失去一侧变化。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "两间搭"
+    ],
+    "generation": {
+      "templateId": "q-gap-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  },
+  {
+    "id": "q-3556-001",
+    "principleId": "TE-OVERLAP-3556",
+    "title": "重叠让搭子变弱",
+    "prompt": "3556与另一组嵌张竞争时，比较真正独有的进张。",
+    "hand": "123p789s55z3556m24p",
+    "drawnTile": "4p",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "7s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "3556"
+      }
+    ],
+    "answerTiles": [
+      "3m"
+    ],
+    "explanation": {
+      "summary": "35与56都需要4万，35部分的独有价值较低；切3万保留更稳定的556。",
+      "bestPartition": [
+        "123",
+        "789",
+        "白白",
+        "556",
+        "24"
+      ],
+      "contrast": "保留完整3556会重复计算4万的价值。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "有效牌重复",
+      "3556"
+    ],
+    "generation": {
+      "templateId": "q-3556-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-3556-001-msp-b",
+    "principleId": "TE-OVERLAP-3556",
+    "title": "重叠让搭子变弱",
+    "prompt": "4557与另一组嵌张竞争时，比较真正独有的进张。",
+    "hand": "789s123p66z4557m68s",
+    "drawnTile": "6s",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "3p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "4557"
+      }
+    ],
+    "answerTiles": [
+      "7m"
+    ],
+    "explanation": {
+      "summary": "57与45都需要6万，57部分的独有价值较低；切7万保留更稳定的455。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "455",
+        "68"
+      ],
+      "contrast": "保留完整4557会重复计算6万的价值。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "有效牌重复",
+      "4557"
+    ],
+    "generation": {
+      "templateId": "q-3556-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-3556-001-pms-c",
+    "principleId": "TE-OVERLAP-3556",
+    "title": "重叠让搭子变弱",
+    "prompt": "3556与另一组嵌张竞争时，比较真正独有的进张。",
+    "hand": "123m789s77z3556p24m",
+    "drawnTile": "4m",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "7s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "3556"
+      }
+    ],
+    "answerTiles": [
+      "3p"
+    ],
+    "explanation": {
+      "summary": "35与56都需要4饼，35部分的独有价值较低；切3饼保留更稳定的556。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "556",
+        "24"
+      ],
+      "contrast": "保留完整3556会重复计算4饼的价值。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "有效牌重复",
+      "3556"
+    ],
+    "generation": {
+      "templateId": "q-3556-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-3556-001-psm-d",
+    "principleId": "TE-OVERLAP-3556",
+    "title": "重叠让搭子变弱",
+    "prompt": "4557与另一组嵌张竞争时，比较真正独有的进张。",
+    "hand": "789s123m55z4557p68s",
+    "drawnTile": "6s",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "3m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "4557"
+      }
+    ],
+    "answerTiles": [
+      "7p"
+    ],
+    "explanation": {
+      "summary": "57与45都需要6饼，57部分的独有价值较低；切7饼保留更稳定的455。",
+      "bestPartition": [
+        "789",
+        "123",
+        "白白",
+        "455",
+        "68"
+      ],
+      "contrast": "保留完整4557会重复计算6饼的价值。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "有效牌重复",
+      "4557"
+    ],
+    "generation": {
+      "templateId": "q-3556-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-3556-001-smp-e",
+    "principleId": "TE-OVERLAP-3556",
+    "title": "重叠让搭子变弱",
+    "prompt": "3556与另一组嵌张竞争时，比较真正独有的进张。",
+    "hand": "123m789p77z3556s24m",
+    "drawnTile": "4m",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "7p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "3556"
+      }
+    ],
+    "answerTiles": [
+      "3s"
+    ],
+    "explanation": {
+      "summary": "35与56都需要4条，35部分的独有价值较低；切3条保留更稳定的556。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "556",
+        "24"
+      ],
+      "contrast": "保留完整3556会重复计算4条的价值。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "有效牌重复",
+      "3556"
+    ],
+    "generation": {
+      "templateId": "q-3556-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-3556-001-spm-f",
+    "principleId": "TE-OVERLAP-3556",
+    "title": "重叠让搭子变弱",
+    "prompt": "4557与另一组嵌张竞争时，比较真正独有的进张。",
+    "hand": "789p123m66z4557s68p",
+    "drawnTile": "6p",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "3m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "4557"
+      }
+    ],
+    "answerTiles": [
+      "7s"
+    ],
+    "explanation": {
+      "summary": "57与45都需要6条，57部分的独有价值较低；切7条保留更稳定的455。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "455",
+        "68"
+      ],
+      "contrast": "保留完整4557会重复计算6条的价值。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "有效牌重复",
+      "4557"
+    ],
+    "generation": {
+      "templateId": "q-3556-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  },
+  {
+    "id": "q-5566-001",
+    "principleId": "TE-OVERLAP-5566",
+    "title": "两组相同受入",
+    "prompt": "5566看似有两组两面，但它们依赖完全相同的牌。",
+    "hand": "123p789s55z5566m23s",
+    "drawnTile": "3s",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "3p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "5566"
+      }
+    ],
+    "answerTiles": [
+      "5m",
+      "6m"
+    ],
+    "explanation": {
+      "summary": "两组56完全共享4万与7万，拆一张5万或6万都能减少重复而保留另一组两面。",
+      "bestPartition": [
+        "123",
+        "789",
+        "白白",
+        "56",
+        "23"
+      ],
+      "contrast": "拆23条会损失独有的1条与4条受入。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "有效牌重复",
+      "5566"
+    ],
+    "generation": {
+      "templateId": "q-5566-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-5566-001-msp-b",
+    "principleId": "TE-OVERLAP-5566",
+    "title": "两组相同受入",
+    "prompt": "4455看似有两组两面，但它们依赖完全相同的牌。",
+    "hand": "789s123p66z4455m78p",
+    "drawnTile": "7p",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "7s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "4455"
+      }
+    ],
+    "answerTiles": [
+      "5m",
+      "4m"
+    ],
+    "explanation": {
+      "summary": "两组45完全共享6万与3万，拆一张5万或4万都能减少重复而保留另一组两面。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "45",
+        "78"
+      ],
+      "contrast": "拆78饼会损失独有的9饼与6饼受入。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "有效牌重复",
+      "4455"
+    ],
+    "generation": {
+      "templateId": "q-5566-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-5566-001-pms-c",
+    "principleId": "TE-OVERLAP-5566",
+    "title": "两组相同受入",
+    "prompt": "5566看似有两组两面，但它们依赖完全相同的牌。",
+    "hand": "123m789s77z5566p23s",
+    "drawnTile": "3s",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "3m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "5566"
+      }
+    ],
+    "answerTiles": [
+      "5p",
+      "6p"
+    ],
+    "explanation": {
+      "summary": "两组56完全共享4饼与7饼，拆一张5饼或6饼都能减少重复而保留另一组两面。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "56",
+        "23"
+      ],
+      "contrast": "拆23条会损失独有的1条与4条受入。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "有效牌重复",
+      "5566"
+    ],
+    "generation": {
+      "templateId": "q-5566-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-5566-001-psm-d",
+    "principleId": "TE-OVERLAP-5566",
+    "title": "两组相同受入",
+    "prompt": "4455看似有两组两面，但它们依赖完全相同的牌。",
+    "hand": "789s123m55z4455p78m",
+    "drawnTile": "7m",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "7s"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "s",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "4455"
+      }
+    ],
+    "answerTiles": [
+      "5p",
+      "4p"
+    ],
+    "explanation": {
+      "summary": "两组45完全共享6饼与3饼，拆一张5饼或4饼都能减少重复而保留另一组两面。",
+      "bestPartition": [
+        "789",
+        "123",
+        "白白",
+        "45",
+        "78"
+      ],
+      "contrast": "拆78万会损失独有的9万与6万受入。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "有效牌重复",
+      "4455"
+    ],
+    "generation": {
+      "templateId": "q-5566-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-5566-001-smp-e",
+    "principleId": "TE-OVERLAP-5566",
+    "title": "两组相同受入",
+    "prompt": "5566看似有两组两面，但它们依赖完全相同的牌。",
+    "hand": "123m789p77z5566s23p",
+    "drawnTile": "3p",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "1z",
+      "doraIndicator": "3m"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "sou-789",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "5566"
+      }
+    ],
+    "answerTiles": [
+      "5s",
+      "6s"
+    ],
+    "explanation": {
+      "summary": "两组56完全共享4条与7条，拆一张5条或6条都能减少重复而保留另一组两面。",
+      "bestPartition": [
+        "123",
+        "789",
+        "中中",
+        "56",
+        "23"
+      ],
+      "contrast": "拆23饼会损失独有的1饼与4饼受入。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "有效牌重复",
+      "5566"
+    ],
+    "generation": {
+      "templateId": "q-5566-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-5566-001-spm-f",
+    "principleId": "TE-OVERLAP-5566",
+    "title": "两组相同受入",
+    "prompt": "4455看似有两组两面，但它们依赖完全相同的牌。",
+    "hand": "789p123m66z4455s78m",
+    "drawnTile": "7m",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "2z",
+      "doraIndicator": "7p"
+    },
+    "segments": [
+      {
+        "id": "pin-123",
+        "suit": "p",
+        "pattern": "789"
+      },
+      {
+        "id": "sou-789",
+        "suit": "m",
+        "pattern": "123"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "4455"
+      }
+    ],
+    "answerTiles": [
+      "5s",
+      "4s"
+    ],
+    "explanation": {
+      "summary": "两组45完全共享6条与3条，拆一张5条或4条都能减少重复而保留另一组两面。",
+      "bestPartition": [
+        "789",
+        "123",
+        "发发",
+        "45",
+        "78"
+      ],
+      "contrast": "拆78万会损失独有的9万与6万受入。"
+    },
+    "sourcePages": [
+      8
+    ],
+    "tags": [
+      "有效牌重复",
+      "4455"
+    ],
+    "generation": {
+      "templateId": "q-5566-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  },
+  {
+    "id": "q-choice-001",
+    "principleId": "TE-CHOICE-001",
+    "title": "少损失一种有效牌",
+    "prompt": "三组搭子看起来都不错，找出拆后仍能保留关键进张的一组。",
+    "hand": "2334578m34p777s55z",
+    "drawnTile": "8m",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "4z",
+      "doraIndicator": "1s"
+    },
+    "segments": [
+      {
+        "id": "sou-777",
+        "suit": "s",
+        "pattern": "777"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "2334"
+      }
+    ],
+    "answerTiles": [
+      "8m"
+    ],
+    "explanation": {
+      "summary": "切8万后，233457仍保留6万进张；它比直接拆23万或34饼少损失一种有效牌。",
+      "bestPartition": [
+        "23",
+        "34",
+        "57",
+        "34",
+        "777",
+        "白白"
+      ],
+      "contrast": "只看成固定搭子会忽略复合形中仍然存活的6万。"
+    },
+    "sourcePages": [
+      9
+    ],
+    "tags": [
+      "有效牌损失",
+      "未来好形"
+    ],
+    "generation": {
+      "templateId": "q-choice-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-choice-001-msp-b",
+    "principleId": "TE-CHOICE-001",
+    "title": "少损失一种有效牌",
+    "prompt": "三组搭子看起来都不错，找出拆后仍能保留关键进张的一组。",
+    "hand": "2356778m67s333p66z",
+    "drawnTile": "2m",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "3z",
+      "doraIndicator": "9p"
+    },
+    "segments": [
+      {
+        "id": "sou-777",
+        "suit": "p",
+        "pattern": "333"
+      },
+      {
+        "id": "main",
+        "suit": "m",
+        "pattern": "6778"
+      }
+    ],
+    "answerTiles": [
+      "2m"
+    ],
+    "explanation": {
+      "summary": "切2万后，356778仍保留4万进张；它比直接拆78万或67条少损失一种有效牌。",
+      "bestPartition": [
+        "78",
+        "67",
+        "35",
+        "67",
+        "333",
+        "发发"
+      ],
+      "contrast": "只看成固定搭子会忽略复合形白仍然存活的4万。"
+    },
+    "sourcePages": [
+      9
+    ],
+    "tags": [
+      "有效牌损失",
+      "未来好形"
+    ],
+    "generation": {
+      "templateId": "q-choice-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-choice-001-pms-c",
+    "principleId": "TE-CHOICE-001",
+    "title": "少损失一种有效牌",
+    "prompt": "三组搭子看起来都不错，找出拆后仍能保留关键进张的一组。",
+    "hand": "2334578p34m777s77z",
+    "drawnTile": "8p",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "3z",
+      "doraIndicator": "1s"
+    },
+    "segments": [
+      {
+        "id": "sou-777",
+        "suit": "s",
+        "pattern": "777"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "2334"
+      }
+    ],
+    "answerTiles": [
+      "8p"
+    ],
+    "explanation": {
+      "summary": "切8饼后，233457仍保留6饼进张；它比直接拆23饼或34万少损失一种有效牌。",
+      "bestPartition": [
+        "23",
+        "34",
+        "57",
+        "34",
+        "777",
+        "中中"
+      ],
+      "contrast": "只看成固定搭子会忽略复合形发仍然存活的6饼。"
+    },
+    "sourcePages": [
+      9
+    ],
+    "tags": [
+      "有效牌损失",
+      "未来好形"
+    ],
+    "generation": {
+      "templateId": "q-choice-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-choice-001-psm-d",
+    "principleId": "TE-CHOICE-001",
+    "title": "少损失一种有效牌",
+    "prompt": "三组搭子看起来都不错，找出拆后仍能保留关键进张的一组。",
+    "hand": "2356778p67s333m55z",
+    "drawnTile": "2p",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "4z",
+      "doraIndicator": "9m"
+    },
+    "segments": [
+      {
+        "id": "sou-777",
+        "suit": "m",
+        "pattern": "333"
+      },
+      {
+        "id": "main",
+        "suit": "p",
+        "pattern": "6778"
+      }
+    ],
+    "answerTiles": [
+      "2p"
+    ],
+    "explanation": {
+      "summary": "切2饼后，356778仍保留4饼进张；它比直接拆78饼或67条少损失一种有效牌。",
+      "bestPartition": [
+        "78",
+        "67",
+        "35",
+        "67",
+        "333",
+        "白白"
+      ],
+      "contrast": "只看成固定搭子会忽略复合形发仍然存活的4饼。"
+    },
+    "sourcePages": [
+      9
+    ],
+    "tags": [
+      "有效牌损失",
+      "未来好形"
+    ],
+    "generation": {
+      "templateId": "q-choice-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-choice-001-smp-e",
+    "principleId": "TE-CHOICE-001",
+    "title": "少损失一种有效牌",
+    "prompt": "三组搭子看起来都不错，找出拆后仍能保留关键进张的一组。",
+    "hand": "2334578s34m777p77z",
+    "drawnTile": "8s",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "3z",
+      "doraIndicator": "1p"
+    },
+    "segments": [
+      {
+        "id": "sou-777",
+        "suit": "p",
+        "pattern": "777"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "2334"
+      }
+    ],
+    "answerTiles": [
+      "8s"
+    ],
+    "explanation": {
+      "summary": "切8条后，233457仍保留6条进张；它比直接拆23条或34万少损失一种有效牌。",
+      "bestPartition": [
+        "23",
+        "34",
+        "57",
+        "34",
+        "777",
+        "中中"
+      ],
+      "contrast": "只看成固定搭子会忽略复合形白仍然存活的6条。"
+    },
+    "sourcePages": [
+      9
+    ],
+    "tags": [
+      "有效牌损失",
+      "未来好形"
+    ],
+    "generation": {
+      "templateId": "q-choice-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-choice-001-spm-f",
+    "principleId": "TE-CHOICE-001",
+    "title": "少损失一种有效牌",
+    "prompt": "三组搭子看起来都不错，找出拆后仍能保留关键进张的一组。",
+    "hand": "2356778s67p333m66z",
+    "drawnTile": "2s",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "4z",
+      "doraIndicator": "9m"
+    },
+    "segments": [
+      {
+        "id": "sou-777",
+        "suit": "m",
+        "pattern": "333"
+      },
+      {
+        "id": "main",
+        "suit": "s",
+        "pattern": "6778"
+      }
+    ],
+    "answerTiles": [
+      "2s"
+    ],
+    "explanation": {
+      "summary": "切2条后，356778仍保留4条进张；它比直接拆78条或67饼少损失一种有效牌。",
+      "bestPartition": [
+        "78",
+        "67",
+        "35",
+        "67",
+        "333",
+        "发发"
+      ],
+      "contrast": "只看成固定搭子会忽略复合形中仍然存活的4条。"
+    },
+    "sourcePages": [
+      9
+    ],
+    "tags": [
+      "有效牌损失",
+      "未来好形"
+    ],
+    "generation": {
+      "templateId": "q-choice-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  },
+  {
+    "id": "q-pair-001",
+    "principleId": "TE-PAIR-001",
+    "title": "雀头不必过早固定",
+    "prompt": "只有一个对子时，先保留更多面子候补。",
+    "hand": "2378p12446s345m77z",
+    "drawnTile": "7z",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "2z",
+      "doraIndicator": "9m"
+    },
+    "segments": [
+      {
+        "id": "man-345",
+        "suit": "m",
+        "pattern": "345"
+      }
+    ],
+    "answerTiles": [
+      "1s"
+    ],
+    "explanation": {
+      "summary": "不要为了固定44条作雀头而切6条；切1条能保留24与46两个面子候补。",
+      "bestPartition": [
+        "23",
+        "78",
+        "24",
+        "46",
+        "345",
+        "中中"
+      ],
+      "contrast": "雀头通常比第四个面子容易补回，过早固定会缩窄受入。"
+    },
+    "sourcePages": [
+      10
+    ],
+    "tags": [
+      "雀头",
+      "面子候补"
+    ],
+    "generation": {
+      "templateId": "q-pair-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-pair-001-msp-b",
+    "principleId": "TE-PAIR-001",
+    "title": "雀头不必过早固定",
+    "prompt": "只有一个对子时，先保留更多面子候补。",
+    "hand": "2378s46689p567m55z",
+    "drawnTile": "5z",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "2z",
+      "doraIndicator": "1m"
+    },
+    "segments": [
+      {
+        "id": "man-345",
+        "suit": "m",
+        "pattern": "567"
+      }
+    ],
+    "answerTiles": [
+      "9p"
+    ],
+    "explanation": {
+      "summary": "不要为了固定66饼作雀头而切4饼；切9饼能保留68与46两个面子候补。",
+      "bestPartition": [
+        "78",
+        "23",
+        "68",
+        "46",
+        "567",
+        "白白"
+      ],
+      "contrast": "雀头通常比第四个面子容易补回，过早固定会缩窄受入。"
+    },
+    "sourcePages": [
+      10
+    ],
+    "tags": [
+      "雀头",
+      "面子候补"
+    ],
+    "generation": {
+      "templateId": "q-pair-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-pair-001-pms-c",
+    "principleId": "TE-PAIR-001",
+    "title": "雀头不必过早固定",
+    "prompt": "只有一个对子时，先保留更多面子候补。",
+    "hand": "2378m12446s345p66z",
+    "drawnTile": "6z",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "1z",
+      "doraIndicator": "9p"
+    },
+    "segments": [
+      {
+        "id": "man-345",
+        "suit": "p",
+        "pattern": "345"
+      }
+    ],
+    "answerTiles": [
+      "1s"
+    ],
+    "explanation": {
+      "summary": "不要为了固定44条作雀头而切6条；切1条能保留24与46两个面子候补。",
+      "bestPartition": [
+        "23",
+        "78",
+        "24",
+        "46",
+        "345",
+        "发发"
+      ],
+      "contrast": "雀头通常比第四个面子容易补回，过早固定会缩窄受入。"
+    },
+    "sourcePages": [
+      10
+    ],
+    "tags": [
+      "雀头",
+      "面子候补"
+    ],
+    "generation": {
+      "templateId": "q-pair-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-pair-001-psm-d",
+    "principleId": "TE-PAIR-001",
+    "title": "雀头不必过早固定",
+    "prompt": "只有一个对子时，先保留更多面子候补。",
+    "hand": "2378s46689m567p66z",
+    "drawnTile": "6z",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "1z",
+      "doraIndicator": "1p"
+    },
+    "segments": [
+      {
+        "id": "man-345",
+        "suit": "p",
+        "pattern": "567"
+      }
+    ],
+    "answerTiles": [
+      "9m"
+    ],
+    "explanation": {
+      "summary": "不要为了固定66万作雀头而切4万；切9万能保留68与46两个面子候补。",
+      "bestPartition": [
+        "78",
+        "23",
+        "68",
+        "46",
+        "567",
+        "发发"
+      ],
+      "contrast": "雀头通常比第四个面子容易补回，过早固定会缩窄受入。"
+    },
+    "sourcePages": [
+      10
+    ],
+    "tags": [
+      "雀头",
+      "面子候补"
+    ],
+    "generation": {
+      "templateId": "q-pair-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-pair-001-smp-e",
+    "principleId": "TE-PAIR-001",
+    "title": "雀头不必过早固定",
+    "prompt": "只有一个对子时，先保留更多面子候补。",
+    "hand": "2378m12446p345s55z",
+    "drawnTile": "5z",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "2z",
+      "doraIndicator": "9s"
+    },
+    "segments": [
+      {
+        "id": "man-345",
+        "suit": "s",
+        "pattern": "345"
+      }
+    ],
+    "answerTiles": [
+      "1p"
+    ],
+    "explanation": {
+      "summary": "不要为了固定44饼作雀头而切6饼；切1饼能保留24与46两个面子候补。",
+      "bestPartition": [
+        "23",
+        "78",
+        "24",
+        "46",
+        "345",
+        "白白"
+      ],
+      "contrast": "雀头通常比第四个面子容易补回，过早固定会缩窄受入。"
+    },
+    "sourcePages": [
+      10
+    ],
+    "tags": [
+      "雀头",
+      "面子候补"
+    ],
+    "generation": {
+      "templateId": "q-pair-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-pair-001-spm-f",
+    "principleId": "TE-PAIR-001",
+    "title": "雀头不必过早固定",
+    "prompt": "只有一个对子时，先保留更多面子候补。",
+    "hand": "2378p46689m567s77z",
+    "drawnTile": "7z",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "1z",
+      "doraIndicator": "1s"
+    },
+    "segments": [
+      {
+        "id": "man-345",
+        "suit": "s",
+        "pattern": "567"
+      }
+    ],
+    "answerTiles": [
+      "9m"
+    ],
+    "explanation": {
+      "summary": "不要为了固定66万作雀头而切4万；切9万能保留68与46两个面子候补。",
+      "bestPartition": [
+        "78",
+        "23",
+        "68",
+        "46",
+        "567",
+        "中中"
+      ],
+      "contrast": "雀头通常比第四个面子容易补回，过早固定会缩窄受入。"
+    },
+    "sourcePages": [
+      10
+    ],
+    "tags": [
+      "雀头",
+      "面子候补"
+    ],
+    "generation": {
+      "templateId": "q-pair-001",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  },
+  {
+    "id": "q-pair-002",
+    "principleId": "TE-PAIR-002",
+    "title": "第三对往往效率低",
+    "prompt": "普通手只需要一个雀头，比较第三个对子与浮牌的面子潜力。",
+    "hand": "34789p1166s357m44z",
+    "drawnTile": "7m",
+    "suitOrder": [
+      "p",
+      "m",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "3z",
+      "doraIndicator": "5p"
+    },
+    "segments": [
+      {
+        "id": "pin-789",
+        "suit": "p",
+        "pattern": "789"
+      }
+    ],
+    "answerTiles": [
+      "4z"
+    ],
+    "explanation": {
+      "summary": "普通手已有多组对子时，第三对以后面子化效率很低。北是客风对子，先拆北能保留中张变化。",
+      "bestPartition": [
+        "789",
+        "34",
+        "11",
+        "66",
+        "35",
+        "7"
+      ],
+      "contrast": "切中张会损失多种顺子变化，只为保留额外对子并不划算。"
+    },
+    "sourcePages": [
+      11,
+      12
+    ],
+    "tags": [
+      "对子过多"
+    ],
+    "generation": {
+      "templateId": "q-pair-002",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "mps-a",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-mps-a"
+    }
+  },
+  {
+    "id": "q-pair-002-msp-b",
+    "principleId": "TE-PAIR-002",
+    "title": "第三对往往效率低",
+    "prompt": "普通手只需要一个雀头，比较第三个对子与浮牌的面子潜力。",
+    "hand": "12367s4499p357m33z",
+    "drawnTile": "3m",
+    "suitOrder": [
+      "s",
+      "m",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "4z",
+      "doraIndicator": "5s"
+    },
+    "segments": [
+      {
+        "id": "pin-789",
+        "suit": "s",
+        "pattern": "123"
+      }
+    ],
+    "answerTiles": [
+      "3z"
+    ],
+    "explanation": {
+      "summary": "普通手已有多组对子时，第三对以后面子化效率很低。西是客风对子，先拆西能保留白张变化。",
+      "bestPartition": [
+        "123",
+        "67",
+        "99",
+        "44",
+        "57",
+        "3"
+      ],
+      "contrast": "切白张会损失多种顺子变化，只为保留额外对子并不划算。"
+    },
+    "sourcePages": [
+      11,
+      12
+    ],
+    "tags": [
+      "对子过多"
+    ],
+    "generation": {
+      "templateId": "q-pair-002",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "msp-b",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-msp-b"
+    }
+  },
+  {
+    "id": "q-pair-002-pms-c",
+    "principleId": "TE-PAIR-002",
+    "title": "第三对往往效率低",
+    "prompt": "普通手只需要一个雀头，比较第三个对子与浮牌的面子潜力。",
+    "hand": "34789m1166s357p33z",
+    "drawnTile": "7p",
+    "suitOrder": [
+      "m",
+      "p",
+      "s"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "4z",
+      "doraIndicator": "5m"
+    },
+    "segments": [
+      {
+        "id": "pin-789",
+        "suit": "m",
+        "pattern": "789"
+      }
+    ],
+    "answerTiles": [
+      "3z"
+    ],
+    "explanation": {
+      "summary": "普通手已有多组对子时，第三对以后面子化效率很低。西是客风对子，先拆西能保留发张变化。",
+      "bestPartition": [
+        "789",
+        "34",
+        "11",
+        "66",
+        "35",
+        "7"
+      ],
+      "contrast": "切发张会损失多种顺子变化，只为保留额外对子并不划算。"
+    },
+    "sourcePages": [
+      11,
+      12
+    ],
+    "tags": [
+      "对子过多"
+    ],
+    "generation": {
+      "templateId": "q-pair-002",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "pms-c",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-pms-c"
+    }
+  },
+  {
+    "id": "q-pair-002-psm-d",
+    "principleId": "TE-PAIR-002",
+    "title": "第三对往往效率低",
+    "prompt": "普通手只需要一个雀头，比较第三个对子与浮牌的面子潜力。",
+    "hand": "12367s4499m357p44z",
+    "drawnTile": "3p",
+    "suitOrder": [
+      "s",
+      "p",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "3z",
+      "doraIndicator": "5s"
+    },
+    "segments": [
+      {
+        "id": "pin-789",
+        "suit": "s",
+        "pattern": "123"
+      }
+    ],
+    "answerTiles": [
+      "4z"
+    ],
+    "explanation": {
+      "summary": "普通手已有多组对子时，第三对以后面子化效率很低。北是客风对子，先拆北能保留发张变化。",
+      "bestPartition": [
+        "123",
+        "67",
+        "99",
+        "44",
+        "57",
+        "3"
+      ],
+      "contrast": "切发张会损失多种顺子变化，只为保留额外对子并不划算。"
+    },
+    "sourcePages": [
+      11,
+      12
+    ],
+    "tags": [
+      "对子过多"
+    ],
+    "generation": {
+      "templateId": "q-pair-002",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "psm-d",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-psm-d"
+    }
+  },
+  {
+    "id": "q-pair-002-smp-e",
+    "principleId": "TE-PAIR-002",
+    "title": "第三对往往效率低",
+    "prompt": "普通手只需要一个雀头，比较第三个对子与浮牌的面子潜力。",
+    "hand": "34789m1166p357s33z",
+    "drawnTile": "7s",
+    "suitOrder": [
+      "m",
+      "s",
+      "p"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "1z",
+      "seatWind": "4z",
+      "doraIndicator": "5m"
+    },
+    "segments": [
+      {
+        "id": "pin-789",
+        "suit": "m",
+        "pattern": "789"
+      }
+    ],
+    "answerTiles": [
+      "3z"
+    ],
+    "explanation": {
+      "summary": "普通手已有多组对子时，第三对以后面子化效率很低。西是客风对子，先拆西能保留白张变化。",
+      "bestPartition": [
+        "789",
+        "34",
+        "11",
+        "66",
+        "35",
+        "7"
+      ],
+      "contrast": "切白张会损失多种顺子变化，只为保留额外对子并不划算。"
+    },
+    "sourcePages": [
+      11,
+      12
+    ],
+    "tags": [
+      "对子过多"
+    ],
+    "generation": {
+      "templateId": "q-pair-002",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "smp-e",
+      "rankTransform": "identity",
+      "scenario": "identity-honors-smp-e"
+    }
+  },
+  {
+    "id": "q-pair-002-spm-f",
+    "principleId": "TE-PAIR-002",
+    "title": "第三对往往效率低",
+    "prompt": "普通手只需要一个雀头，比较第三个对子与浮牌的面子潜力。",
+    "hand": "12367p4499m357s44z",
+    "drawnTile": "3s",
+    "suitOrder": [
+      "p",
+      "s",
+      "m"
+    ],
+    "dragonOrder": [
+      "5z",
+      "6z",
+      "7z"
+    ],
+    "context": {
+      "roundWind": "2z",
+      "seatWind": "3z",
+      "doraIndicator": "5p"
+    },
+    "segments": [
+      {
+        "id": "pin-789",
+        "suit": "p",
+        "pattern": "123"
+      }
+    ],
+    "answerTiles": [
+      "4z"
+    ],
+    "explanation": {
+      "summary": "普通手已有多组对子时，第三对以后面子化效率很低。北是客风对子，先拆北能保留中张变化。",
+      "bestPartition": [
+        "123",
+        "67",
+        "99",
+        "44",
+        "57",
+        "3"
+      ],
+      "contrast": "切中张会损失多种顺子变化，只为保留额外对子并不划算。"
+    },
+    "sourcePages": [
+      11,
+      12
+    ],
+    "tags": [
+      "对子过多"
+    ],
+    "generation": {
+      "templateId": "q-pair-002",
+      "generatorVersion": "structured-variation-2",
+      "suitTransform": "spm-f",
+      "rankTransform": "mirror",
+      "scenario": "mirror-honors-spm-f"
+    }
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "name": "牌理小课：日麻牌效训练",
+  "short_name": "牌理小课",
+  "description": "循序渐进的日麻牌效练习",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f1ede3",
+  "theme_color": "#173c33",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "./icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

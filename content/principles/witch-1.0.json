@@ -1,0 +1,24 @@
+{
+  "source": {
+    "title": "魔女BLOG初中级日麻讲座（简中翻译版）",
+    "author": "puyo",
+    "translator": "MARQUIS LIU",
+    "scope": "印刷页3-12（PDF页5-14）"
+  },
+  "principles": [
+    { "id": "TE-ISO-001", "order": 1, "title": "孤立牌先后", "sourcePages": [4], "summary": "先处理成面和成搭机会较少的孤立牌；客风、幺九、役牌、二八和中张的价值不同。", "exceptions": ["役牌价值", "附近数牌造成的有效牌重叠", "宝牌"] },
+    { "id": "TE-TATSU-001", "order": 2, "title": "搭子强弱", "sourcePages": [5], "summary": "边张通常弱于嵌张，中张嵌张的良形变化通常优于靠边嵌张，两面通常最强。", "exceptions": ["有效牌重复", "听牌容易度", "手役"] },
+    { "id": "TE-COMPLEX-4556", "order": 3, "title": "4556中膨形", "sourcePages": [6], "summary": "4556不应只看成完成面加孤张；按45与56保留时拥有宽广进张。", "exceptions": ["已经进入必须固定面子的阶段"] },
+    { "id": "TE-COMPLEX-4567", "order": 4, "title": "4567四连形", "sourcePages": [6], "summary": "四连形可同时保留两个两面，也有形成三面张、面子加搭子或面子加雀头的变化。", "exceptions": [] },
+    { "id": "TE-COMPLEX-4456", "order": 5, "title": "4456亚两面", "sourcePages": [6], "summary": "4456兼有对子与两面，能承担雀头或面子候补，但变化质量略低于中膨和四连形。", "exceptions": [] },
+    { "id": "TE-COMPLEX-3567", "order": 6, "title": "3567跳一复合形", "sourcePages": [6], "summary": "3567可按35与67理解，进张广但部分进张会留下嵌张。", "exceptions": [] },
+    { "id": "TE-COMPLEX-4445", "order": 7, "title": "4445刻子复合形", "sourcePages": [6], "summary": "未听牌时4445通常只提供一个面子与雀头候补，不能误判为能够产生两个面子。", "exceptions": ["听牌阶段的多面听"] },
+    { "id": "TE-OVERLAP-001", "order": 8, "title": "有效牌重复", "sourcePages": [7], "summary": "两个搭子依赖同一种进张时，表面搭子数量会高估实际效率；取舍时应比较真正损失的有效牌。", "exceptions": [] },
+    { "id": "TE-GAP-001", "order": 9, "title": "两间搭与三间搭", "sourcePages": [8], "summary": "246、2468等连续嵌张在搭子不足时仍有价值，但同等受入可能需要更多牌且效率略低。", "exceptions": ["搭子已经过剩"] },
+    { "id": "TE-OVERLAP-3556", "order": 10, "title": "3556重叠形", "sourcePages": [8], "summary": "3556中的35和56共享有效牌；搭子足够时，35部分的边际价值较低。", "exceptions": [] },
+    { "id": "TE-OVERLAP-5566", "order": 11, "title": "5566双重重叠", "sourcePages": [8], "summary": "5566看似两个两面并带一杯口机会，但两组完全依赖相同进张，实际效率经常不如其他搭子。", "exceptions": ["打点与一杯口价值足以补偿"] },
+    { "id": "TE-CHOICE-001", "order": 12, "title": "有效牌损失与未来好形", "sourcePages": [9], "summary": "相似搭子取舍不只看当前受入，还要比较损失的有效牌、未来良形变化和最终听牌质量。", "exceptions": ["手役或宝牌明确改变目标"] },
+    { "id": "TE-PAIR-001", "order": 13, "title": "不要过早固定雀头", "sourcePages": [10], "summary": "多向听且只有一对时，不应为了固定雀头而轻易放弃面子候补；雀头通常比面子容易补回。", "exceptions": ["已经缺乏可靠雀头候补"] },
+    { "id": "TE-PAIR-002", "order": 14, "title": "普通手通常只需两对", "sourcePages": [11, 12], "summary": "普通手中过多对子会拖慢面子形成；第三对以后应积极比较拆对、复合利用或转七对子。", "exceptions": ["2.0以后引入的七对子路线", "对对和与鸣牌路线"] }
+  ]
+}
