@@ -1,5 +1,7 @@
 # 牌理小课
 
+**在线体验：[https://xenon0207.github.io/majiang-efficiency-trainer/](https://xenon0207.github.io/majiang-efficiency-trainer/)**
+
 面向日麻初学者的渐进式牌效练习。1.0 收录 14 个基础原则、每课 6 道静态题，共 84 题；每题只切一次牌。2.0 提供从散牌开始的连续摸切训练，同时评价普通手、七对子和国士路线。两个版本都保留可交互分组辅助。
 
 ## 本地运行
