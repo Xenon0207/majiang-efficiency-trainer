@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react'
 import { MahjongTile as Tile } from '../components/MahjongTile'
-import { ruleLessons, rulePhases, totalRuleQuestions, type RuleChoice, type RuleLesson, type RuleQuestion } from './course'
+import { ruleLessons, rulePhases, type RuleChoice, type RuleLesson, type RuleQuestion } from './course'
 import type { RuleProgressState } from './progress'
 
-function shuffledChoices(choices: readonly RuleChoice[]): RuleChoice[] {
+function shuffledChoices<T>(choices: readonly T[]): T[] {
   const result = [...choices]
   for (let index = result.length - 1; index > 0; index -= 1) {
     const target = Math.floor(Math.random() * (index + 1))
@@ -39,41 +39,48 @@ function QuestionVisual({ question }: { question: RuleQuestion }) {
   )
 }
 
-export function RulesCatalog({ progress, onBack, onStartLesson }: {
+export function RulesCatalog({ progress, onBack, onStartLesson, scope = 'quick' }: {
   progress: RuleProgressState
   onBack: () => void
   onStartLesson: (lessonId: string) => void
+  scope?: 'quick' | 'detailed'
 }) {
-  const correct = Object.values(progress.correct).filter(Boolean).length
+  const phases = scope === 'quick' ? rulePhases.slice(0, 3) : rulePhases.slice(3)
+  const lessons = phases.flatMap((phase) => phase.lessonIds.map((id) => ruleLessons.find((lesson) => lesson.id === id)!))
+  const lessonQuestionIds = new Set(lessons.flatMap((lesson) => lesson.questions.map((question) => question.id)))
+  const correct = Object.entries(progress.correct).filter(([id, value]) => value && lessonQuestionIds.has(id)).length
+  const questionCount = lessons.reduce((sum, lesson) => sum + lesson.questions.length, 0)
+  const completedCount = lessons.filter((lesson) => progress.completedLessons.includes(lesson.id)).length
   return (
     <main className="app-shell lesson-shell course-catalog-shell">
       <header className="topbar">
         <button className="icon-button" onClick={onBack} aria-label="返回首页">‹</button>
-        <div className="continuous-top-title"><strong>日麻规则入门</strong><span>为熟悉其他麻将的玩家准备</span></div>
+        <div className="continuous-top-title"><strong>{scope === 'quick' ? '日麻规则入门' : '详细规则与算分'}</strong><span>{scope === 'quick' ? '为熟悉其他麻将的玩家准备' : '完整役种 · 点数 · 牌桌细节'}</span></div>
         <span className="version-pill">规则</span>
       </header>
       <article className="lesson-card course-catalog-card rules-catalog-card">
-        <span className="eyebrow">先懂规则，再练牌效</span>
-        <h1>日麻真正不同在哪里</h1>
-        <p className="prompt">为会打川麻或国标的玩家准备：不从牌名讲起，只改掉会妨碍日麻上手的关键习惯。</p>
+        <span className="eyebrow">{scope === 'quick' ? '先懂规则，再练牌效' : '快速上手之后继续'}</span>
+        <h1>{scope === 'quick' ? '日麻真正不同在哪里' : '把规则学完整，但仍按实战频率'}</h1>
+        <p className="prompt">{scope === 'quick' ? '为会打川麻或国标的玩家准备：不从牌名讲起，只改掉会妨碍日麻上手的关键习惯。' : '采用雀魂四人麻将规则。高频役反复练，罕见役只需认识；算分从数百道题库中每次抽取短练。'}</p>
 
         <div className="rules-overview">
-          <div><span>课程</span><strong>{progress.completedLessons.length}<small> / {ruleLessons.length}</small></strong></div>
-          <div><span>答对过</span><strong>{correct}<small> / {totalRuleQuestions}</small></strong></div>
-          <p>重点概念会换场景反复出现 · 共 {totalRuleQuestions} 道题</p>
+          <div><span>课程</span><strong>{completedCount}<small> / {lessons.length}</small></strong></div>
+          <div><span>答对过</span><strong>{correct}<small> / {questionCount}</small></strong></div>
+          <p>{scope === 'quick' ? '重点概念会换场景反复出现' : '大题库课程每次只抽取12题，适合反复短练'} · 共 {questionCount} 道题</p>
         </div>
 
-        {rulePhases.map((phase) => (
+        {phases.map((phase) => (
           <section className="course-list catalog-course-list rule-phase-section" key={phase.id}>
             <div className="rule-phase-heading"><span>{phase.eyebrow}</span><strong>{phase.title}</strong><p>{phase.goal}</p></div>
             {phase.lessonIds.map((lessonId) => {
               const lesson = ruleLessons.find((item) => item.id === lessonId)!
               const completed = progress.completedLessons.includes(lesson.id)
               const answered = lesson.questions.filter((question) => progress.attempts[question.id]).length
+              const questionLabel = lesson.poolLabel ?? `${lesson.questions.length}题`
               return (
                 <button className="course-item" onClick={() => onStartLesson(lesson.id)} key={lesson.id}>
                   <span className={`course-number ${completed ? 'done' : answered ? 'tried' : ''}`}>{completed ? '✓' : lesson.order}</span>
-                  <div><strong>{lesson.title}</strong><span>{completed ? '已完成' : answered ? `${answered}/${lesson.questions.length} 道已作答` : `${lesson.subtitle} · ${lesson.questions.length}题`}</span></div>
+                  <div><strong>{lesson.title}</strong><span>{completed ? '已完成' : answered ? `${answered} 道已作答 · ${questionLabel}` : `${lesson.subtitle} · ${questionLabel}`}</span></div>
                   <i>›</i>
                 </button>
               )
@@ -107,7 +114,7 @@ function RuleIntro({ lesson, onStart }: { lesson: RuleLesson; onStart: () => voi
         </section>
       )}
       <aside className="rule-terms"><span>最后认识术语</span><p>{lesson.terms}</p></aside>
-      <button className="primary-button full rule-start-button" onClick={onStart}>开始 {lesson.questions.length} 道场景题<span>→</span></button>
+      <button className="primary-button full rule-start-button" onClick={onStart}>开始 {lesson.sessionSize ?? lesson.questions.length} 道场景题<span>→</span></button>
     </>
   )
 }
@@ -121,33 +128,49 @@ function RuleQuizQuestion({ question, number, total, onAnswered, onNext, isLast 
   isLast: boolean
 }) {
   const choices = useMemo(() => shuffledChoices(question.choices), [question])
-  const [selectedId, setSelectedId] = useState<string | null>(null)
-  const selected = choices.find((choice) => choice.id === selectedId)
+  const [selectedIds, setSelectedIds] = useState<string[]>([])
+  const [revealed, setRevealed] = useState(false)
+  const multiple = question.selectionMode === 'multiple'
+  const correctIds = choices.filter((choice) => choice.correct).map((choice) => choice.id)
+  const isCorrect = selectedIds.length === correctIds.length && correctIds.every((id) => selectedIds.includes(id))
 
   function choose(choice: RuleChoice) {
-    if (selectedId) return
-    setSelectedId(choice.id)
+    if (revealed) return
+    if (multiple) {
+      setSelectedIds((current) => current.includes(choice.id) ? current.filter((id) => id !== choice.id) : [...current, choice.id])
+      return
+    }
+    setSelectedIds([choice.id])
+    setRevealed(true)
     onAnswered(choice.correct)
+  }
+
+  function submitMultiple() {
+    if (!selectedIds.length || revealed) return
+    setRevealed(true)
+    onAnswered(isCorrect)
   }
 
   return (
     <section className="rule-quiz-card">
       <span className="eyebrow">场景题 {number} / {total}</span>
       <h1>{question.prompt}</h1>
+      {multiple && <p className="rule-multi-note">可多选 · 选好后确认</p>}
       {question.note && <p className="prompt">{question.note}</p>}
       <QuestionVisual question={question} />
       <div className="rule-choices">
         {choices.map((choice) => {
-          const revealed = Boolean(selectedId)
-          const state = revealed ? choice.correct ? 'correct' : choice.id === selectedId ? 'wrong' : 'dimmed' : ''
+          const picked = selectedIds.includes(choice.id)
+          const state = revealed ? choice.correct ? 'correct' : picked ? 'wrong' : 'dimmed' : picked ? 'selected' : ''
           return <button className={state} onClick={() => choose(choice)} key={choice.id}><span>{choice.label}</span>{revealed && choice.correct && <i>✓</i>}{state === 'wrong' && <i>×</i>}</button>
         })}
       </div>
-      {selected && (
-        <div className={`rule-feedback ${selected.correct ? 'correct' : 'wrong'}`} aria-live="polite">
-          <strong>{selected.correct ? '判断正确' : '这里容易混淆'}</strong>
-          <p>{selected.explanation}</p>
-          {!selected.correct && <p className="correct-answer">正确答案：{choices.find((choice) => choice.correct)?.label}</p>}
+      {multiple && !revealed && <button className="primary-button full rule-multi-submit" disabled={!selectedIds.length} onClick={submitMultiple}>确认选择</button>}
+      {revealed && (
+        <div className={`rule-feedback ${isCorrect ? 'correct' : 'wrong'}`} aria-live="polite">
+          <strong>{isCorrect ? '判断正确' : '这里容易混淆'}</strong>
+          <p>{choices.find((choice) => choice.correct)?.explanation}</p>
+          {!isCorrect && <p className="correct-answer">正确答案：{choices.filter((choice) => choice.correct).map((choice) => choice.label).join('、')}</p>}
           <button className="primary-button full" onClick={onNext}>{isLast ? '查看本课小结' : '下一题'}</button>
         </div>
       )}
@@ -161,14 +184,18 @@ export function RuleLessonScreen({ lesson, onBack, onAnswered, onComplete }: {
   onAnswered: (questionId: string, correct: boolean) => void
   onComplete: (lessonId: string) => void
 }) {
+  const [activeQuestions] = useState(() => {
+    if (!lesson.sessionSize || lesson.sessionSize >= lesson.questions.length) return [...lesson.questions]
+    return shuffledChoices(lesson.questions).slice(0, lesson.sessionSize)
+  })
   const [phase, setPhase] = useState<'intro' | 'quiz' | 'done'>('intro')
   const [questionIndex, setQuestionIndex] = useState(0)
   const [correctCount, setCorrectCount] = useState(0)
-  const question = lesson.questions[questionIndex]
-  const progress = phase === 'intro' ? 0 : phase === 'done' ? 100 : ((questionIndex + 1) / lesson.questions.length) * 100
+  const question = activeQuestions[questionIndex]
+  const progress = phase === 'intro' ? 0 : phase === 'done' ? 100 : ((questionIndex + 1) / activeQuestions.length) * 100
 
   function nextQuestion() {
-    if (questionIndex + 1 < lesson.questions.length) {
+    if (questionIndex + 1 < activeQuestions.length) {
       setQuestionIndex((value) => value + 1)
       return
     }
@@ -190,8 +217,8 @@ export function RuleLessonScreen({ lesson, onBack, onAnswered, onComplete }: {
             key={question.id}
             question={question}
             number={questionIndex + 1}
-            total={lesson.questions.length}
-            isLast={questionIndex + 1 === lesson.questions.length}
+            total={activeQuestions.length}
+            isLast={questionIndex + 1 === activeQuestions.length}
             onAnswered={(correct) => {
               if (correct) setCorrectCount((value) => value + 1)
               onAnswered(question.id, correct)
@@ -204,7 +231,7 @@ export function RuleLessonScreen({ lesson, onBack, onAnswered, onComplete }: {
             <span>✓</span>
             <p className="eyebrow">本课完成</p>
             <h1>{lesson.title}</h1>
-            <strong>{correctCount} / {lesson.questions.length} 道首次判断正确</strong>
+            <strong>{correctCount} / {activeQuestions.length} 道首次判断正确</strong>
             <div className="rule-memory"><span>带走这一句</span><strong>{lesson.keyPoint}</strong></div>
             <button className="primary-button full" onClick={onBack}>返回规则课程<span>→</span></button>
           </section>

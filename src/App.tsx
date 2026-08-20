@@ -23,7 +23,7 @@ import { EMPTY_PROGRESS, loadProgress, recordAnswer, resetProgress, type Progres
 import { ContinuousTrainer } from './continuous/ContinuousTrainer'
 import { createRandomContinuousSession } from './continuous/random-session'
 import type { ContinuousSession } from './continuous/types'
-import { ruleLessons, rulePhases, totalRuleQuestions } from './rules/course'
+import { ruleLessons, rulePhases } from './rules/course'
 import { RuleLessonScreen, RulesCatalog } from './rules/RulesCourse'
 import {
   completeRuleLesson,
@@ -319,10 +319,11 @@ function CourseCatalog({ progress, onBack, onStartPrinciple, onStartRandom }: {
   )
 }
 
-function Home({ progress, ruleProgress, onOpenRules, onOpenCourses, onReview, onReset, onStartContinuous }: {
+function Home({ progress, ruleProgress, onOpenRules, onOpenDetailedRules, onOpenCourses, onReview, onReset, onStartContinuous }: {
   progress: ProgressState
   ruleProgress: RuleProgressState
   onOpenRules: () => void
+  onOpenDetailedRules: () => void
   onOpenCourses: () => void
   onReview: () => void
   onReset: () => void
@@ -330,14 +331,19 @@ function Home({ progress, ruleProgress, onOpenRules, onOpenCourses, onReview, on
 }) {
   const completed = Object.values(progress.correct).filter(Boolean).length
   const attempted = Object.keys(progress.attempts).length
-  const rulesCorrect = Object.values(ruleProgress.correct).filter(Boolean).length
   const rulesAttempted = Object.keys(ruleProgress.attempts).length
+  const quickLessons = ruleLessons.slice(0, 12)
+  const detailedLessons = ruleLessons.slice(12)
+  const quickQuestionIds = new Set(quickLessons.flatMap((lesson) => lesson.questions.map((question) => question.id)))
+  const quickCorrect = Object.entries(ruleProgress.correct).filter(([id, value]) => value && quickQuestionIds.has(id)).length
+  const quickQuestionCount = quickLessons.reduce((sum, lesson) => sum + lesson.questions.length, 0)
+  const detailedCompleted = detailedLessons.filter((lesson) => ruleProgress.completedLessons.includes(lesson.id)).length
   return (
     <main className="app-shell home-shell">
       <header className="brand"><div className="brand-mark">牌</div><div><strong>牌理小课</strong><span>日麻牌效练习</span></div></header>
       <section className="hero">
-        <div className="hero-copy"><span className="eyebrow">给新手的一次一切练习</span><h1>先把手牌<br />看清楚，再切。</h1><p>从《魔女BLOG》的牌效原则出发，一题只做一个决定。可以先亲手标记复合形，再比较真正的受入。</p></div>
-        <div className="hero-tile"><img src={tileImage('5m')} alt="五万" /><span>循序渐进</span></div>
+        <div className="hero-copy"><span className="eyebrow">从会打麻将，到真正理解日麻</span><h1>懂规则，<br />也懂每一切。</h1><p>从快速规则、基础牌效到连续手牌训练，再逐步进入役种、算分与攻防判断。</p></div>
+        <div className="hero-tile"><img src={tileImage('7z')} alt="红中" /><span>循序渐进</span></div>
       </section>
       <section className="rules-entry-card">
         <div className="rules-entry-heading">
@@ -345,9 +351,9 @@ function Home({ progress, ruleProgress, onOpenRules, onOpenCourses, onReview, on
           <div><strong>从川麻 / 国标切换到日麻</strong><p>不从牌名讲起，只改变真正会妨碍上手的习惯。</p></div>
         </div>
         <div className="home-rule-goals">
-          {rulePhases.map((phase) => <div key={phase.id}><span>{phase.eyebrow}</span><strong>{phase.title}</strong></div>)}
+          {rulePhases.slice(0, 3).map((phase) => <div key={phase.id}><span>{phase.eyebrow}</span><strong>{phase.title}</strong></div>)}
         </div>
-        <div className="rules-entry-progress"><span>{ruleProgress.completedLessons.length} / {ruleLessons.length} 课</span><span>{rulesCorrect} / {totalRuleQuestions} 题答对过</span></div>
+        <div className="rules-entry-progress"><span>{quickLessons.filter((lesson) => ruleProgress.completedLessons.includes(lesson.id)).length} / {quickLessons.length} 课</span><span>{quickCorrect} / {quickQuestionCount} 题答对过</span></div>
         <button className="primary-button full" onClick={onOpenRules}>{rulesAttempted ? '继续规则课程' : '开始规则入门'}<span>→</span></button>
       </section>
       <section className="dashboard-card">
@@ -358,6 +364,11 @@ function Home({ progress, ruleProgress, onOpenRules, onOpenCourses, onReview, on
       <section className="continuous-entry-card">
         <div><span className="version-tag">连续</span><strong>连续牌效训练</strong><p>每局即时洗出完整随机牌山，从随机散牌连续摸切；普通手、七对子与国士始终动态判断。</p></div>
         <button className="primary-button full" onClick={onStartContinuous}>开始连续训练<span>→</span></button>
+      </section>
+      <section className="continuous-entry-card detailed-rules-entry-card">
+        <div><span className="version-tag">进阶</span><strong>详细规则与算分</strong><p>完整役种按实战频率学习；副露变化、番数复习、路线多选，以及数百道雀魂点数题。</p></div>
+        <div className="detail-entry-progress"><span>{detailedCompleted} / {detailedLessons.length} 课</span><span>赤五 · 食断 · 无切上满贯</span></div>
+        <button className="primary-button full" onClick={onOpenDetailedRules}>{detailedCompleted ? '继续详细规则' : '进入详细规则'}<span>→</span></button>
       </section>
       {(attempted > 0 || rulesAttempted > 0) && <button className="reset-button" onClick={onReset}>清除本机学习记录</button>}
       <footer>题目与解释为原创改编 · 牌面来自 FluffyStuff / riichi-mahjong-tiles</footer>
@@ -373,6 +384,7 @@ function App() {
   const [progress, setProgress] = useState<ProgressState>(() => typeof localStorage === 'undefined' ? EMPTY_PROGRESS : loadProgress())
   const [ruleProgress, setRuleProgress] = useState<RuleProgressState>(() => typeof localStorage === 'undefined' ? EMPTY_RULE_PROGRESS : loadRuleProgress())
   const [ruleLessonId, setRuleLessonId] = useState(ruleLessons[0].id)
+  const [ruleScope, setRuleScope] = useState<'quick' | 'detailed'>('quick')
   const [continuousSession, setContinuousSession] = useState<ContinuousSession | null>(null)
 
   function startRandomBasics() {
@@ -425,7 +437,7 @@ function App() {
   }
 
   if (view === 'rules') {
-    return <RulesCatalog progress={ruleProgress} onBack={() => setView('home')} onStartLesson={(lessonId) => { setRuleLessonId(lessonId); setView('ruleLesson') }} />
+    return <RulesCatalog scope={ruleScope} progress={ruleProgress} onBack={() => setView('home')} onStartLesson={(lessonId) => { setRuleLessonId(lessonId); setView('ruleLesson') }} />
   }
 
   if (view === 'ruleLesson') {
@@ -437,7 +449,7 @@ function App() {
     return <ContinuousTrainer key={continuousSession.id} session={continuousSession} onBack={() => setView('home')} onNewSession={startContinuous} />
   }
 
-  return <Home progress={progress} ruleProgress={ruleProgress} onOpenRules={() => setView('rules')} onOpenCourses={() => setView('courses')} onReview={startReview} onReset={() => { setProgress(resetProgress()); setRuleProgress(resetRuleProgress()) }} onStartContinuous={startContinuous} />
+  return <Home progress={progress} ruleProgress={ruleProgress} onOpenRules={() => { setRuleScope('quick'); setView('rules') }} onOpenDetailedRules={() => { setRuleScope('detailed'); setView('rules') }} onOpenCourses={() => setView('courses')} onReview={startReview} onReset={() => { setProgress(resetProgress()); setRuleProgress(resetRuleProgress()) }} onStartContinuous={startContinuous} />
 }
 
 export default App

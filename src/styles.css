@@ -16,12 +16,12 @@
 
 * { box-sizing: border-box; }
 html { background: var(--forest); }
-body { margin: 0; min-width: 320px; min-height: 100vh; background: linear-gradient(180deg, var(--forest) 0 240px, #f1ede3 240px); }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: #f1ede3; }
 button { font: inherit; }
 button:focus-visible { outline: 3px solid #f0b64a; outline-offset: 3px; }
 
 .app-shell { width: min(100%, 820px); min-height: 100vh; margin: 0 auto; }
-.home-shell { padding: max(22px, env(safe-area-inset-top)) 18px calc(36px + env(safe-area-inset-bottom)); }
+.home-shell { padding: max(22px, env(safe-area-inset-top)) 18px calc(36px + env(safe-area-inset-bottom)); background: linear-gradient(180deg, var(--forest) 0 350px, transparent 350px); }
 .brand { color: white; display: flex; align-items: center; gap: 11px; margin-bottom: 30px; }
 .brand-mark { display: grid; place-items: center; width: 42px; height: 48px; border: 2px solid rgba(255,255,255,.7); border-radius: 6px; background: #f8f4e9; color: var(--forest); font-family: "Noto Serif SC", serif; font-weight: 900; font-size: 23px; box-shadow: 0 3px 0 #b8ad97; }
 .brand strong, .brand span { display: block; }
@@ -53,6 +53,8 @@ button:focus-visible { outline: 3px solid #f0b64a; outline-offset: 3px; }
 .continuous-entry-card .version-tag { position: absolute; top: 0; left: 0; padding: 5px 9px; border-radius: 15px; color: white; background: var(--forest-2); font-size: 10px; font-weight: 900; }
 .continuous-entry-card strong { display: block; font: 900 18px "Noto Serif SC", serif; }
 .continuous-entry-card p { margin: 5px 0 15px; color: var(--muted); font-size: 11px; line-height: 1.65; }
+.detailed-rules-entry-card .version-tag { background: #9a7530; }
+.detail-entry-progress { display: flex; justify-content: space-between; gap: 10px; margin: -3px 0 13px 54px; color: #817a6e; font-size: 9px; }
 .dashboard-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .dashboard-top > div:first-child > span, .dashboard-top strong { display: block; }
 .dashboard-top > div:first-child > span { color: var(--muted); font-size: 12px; }
@@ -166,6 +168,7 @@ footer { padding: 24px 5px 0; color: #8e887e; text-align: center; font-size: 10p
 .rule-choices button:hover:not(.dimmed):not(.correct):not(.wrong) { border-color: #9ab5ab; background: #f3f8f5; }
 .rule-choices button.correct { border-color: #72a493; background: #eaf5f0; }
 .rule-choices button.wrong { border-color: #df8b6e; background: #fff0ea; }
+.rule-choices button.selected { border-color: #57927e; background: #edf6f2; box-shadow: inset 0 0 0 2px rgba(67,129,111,.18); }
 .rule-choices button.dimmed { opacity: .48; }
 .rule-choices button i { width: 25px; height: 25px; display: grid; place-items: center; flex: 0 0 auto; margin-left: 8px; border-radius: 50%; color: white; background: var(--forest-2); font-style: normal; font-weight: 900; }
 .rule-choices button.wrong i { background: var(--orange); }
@@ -175,6 +178,8 @@ footer { padding: 24px 5px 0; color: #8e887e; text-align: center; font-size: 10p
 .rule-feedback p { margin: 7px 0 0; color: #52615c; font-size: 11px; line-height: 1.7; }
 .rule-feedback .correct-answer { color: #9b4e34; font-weight: 800; }
 .rule-feedback .primary-button { margin-top: 14px; }
+.rule-multi-note { margin: -9px 0 13px; color: #7d7a72; text-align: center; font-size: 9px; }
+.rule-multi-submit { margin-top: 12px; }
 .rule-complete { padding-top: 28px; text-align: center; }
 .rule-complete > span { width: 54px; height: 54px; display: grid; place-items: center; margin: 0 auto 14px; border-radius: 50%; color: white; background: var(--forest-2); font-size: 26px; }
 .rule-complete > strong { display: block; margin-top: 12px; color: #60706a; font-size: 12px; }
@@ -439,6 +444,7 @@ footer { padding: 24px 5px 0; color: #8e887e; text-align: center; font-size: 10p
 
 @media (min-width: 560px) {
   body { background: linear-gradient(180deg, var(--forest) 0 320px, #f1ede3 320px); }
+  .home-shell { background: transparent; }
   .home-shell { padding-left: 32px; padding-right: 32px; }
   .hero-tile { display: flex; }
   .lesson-shell { padding: 24px; background: var(--forest); }

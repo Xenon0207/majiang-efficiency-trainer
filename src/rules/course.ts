@@ -8,6 +8,7 @@ export interface RuleQuestion {
   tiles?: readonly TileCode[]
   river?: readonly TileCode[]
   doraIndicator?: TileCode
+  selectionMode?: 'single' | 'multiple'
   choices: readonly RuleChoice[]
 }
 export interface RuleLesson {
@@ -23,6 +24,8 @@ export interface RuleLesson {
   points: readonly string[]
   terms: string
   example?: { label: string; tiles: readonly TileCode[]; caption: string }
+  sessionSize?: number
+  poolLabel?: string
   questions: readonly RuleQuestion[]
 }
 export interface RulePhase { id: string; eyebrow: string; title: string; goal: string; lessonIds: readonly string[] }
@@ -42,13 +45,13 @@ function choose(id: string, prompt: string, correctLabel: string, wrongLabels: r
   ] }
 }
 
-export const rulePhases: readonly RulePhase[] = [
+const foundationalRulePhases: readonly RulePhase[] = [
   { id: 'core', eyebrow: '15 分钟目标', title: '能合法和牌', goal: '改掉四个川麻/国标惯性：无役、乱鸣、把宝牌当役、漏看振听。', lessonIds: ['yaku-gate', 'closed-riichi', 'dora', 'furiten'] },
   { id: 'yaku', eyebrow: '30 分钟目标', title: '掌握六个常用役', goal: '先会立直、断幺九和役牌三条路线，再理解平和、七对子与混一色。', lessonIds: ['starter-routes', 'pinfu', 'familiar-yaku'] },
   { id: 'defense', eyebrow: '第一次遇到立直后', title: '开始学会防守', goal: '先找确定安全的牌，再学习筋、壁以及最基础的攻防取舍。', lessonIds: ['why-defense', 'genbutsu', 'suji', 'kabe', 'push-fold'] },
 ]
 
-export const ruleLessons: readonly RuleLesson[] = [
+const foundationalRuleLessons: readonly RuleLesson[] = [
   {
     id: 'yaku-gate', phaseId: 'core', order: 1,
     title: '牌凑好了，为什么还不能和？', subtitle: '先找到和牌资格',
@@ -255,5 +258,10 @@ export const ruleLessons: readonly RuleLesson[] = [
     ],
   },
 ]
+
+import { advancedRuleLessons, advancedRulePhases } from './advanced-course'
+
+export const rulePhases: readonly RulePhase[] = [...foundationalRulePhases, ...advancedRulePhases]
+export const ruleLessons: readonly RuleLesson[] = [...foundationalRuleLessons, ...advancedRuleLessons]
 
 export const totalRuleQuestions = ruleLessons.reduce((sum, lesson) => sum + lesson.questions.length, 0)
