@@ -106,6 +106,20 @@ function RuleIntro({ lesson, onStart }: { lesson: RuleLesson; onStart: () => voi
         <ul>{lesson.points.map((point) => <li key={point}>{point}</li>)}</ul>
         <div className="rule-memory"><span>记住这一点</span><strong>{lesson.keyPoint}</strong></div>
       </section>
+      {lesson.studySections?.map((section) => (
+        <section className="rule-study-section" key={section.title}>
+          <div className="rule-study-heading"><span>课前讲义</span><h2>{section.title}</h2>{section.intro && <p>{section.intro}</p>}</div>
+          <div className="rule-study-grid">
+            {section.items.map((item) => (
+              <article className="rule-study-item" key={`${section.title}-${item.title}`}>
+                <div><strong>{item.title}</strong>{item.badge && <span>{item.badge}</span>}</div>
+                <p>{item.body}</p>
+                {item.note && <small>{item.note}</small>}
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
       {lesson.example && (
         <section className="rule-example-card">
           <span>{lesson.example.label}</span>

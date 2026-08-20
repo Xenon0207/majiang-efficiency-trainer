@@ -33,6 +33,15 @@ describe('rule course content', () => {
     expect(scoring.every((lesson) => lesson.sessionSize === 12)).toBe(true)
   })
 
+  it('teaches every detailed lesson before asking questions', () => {
+    const detailed = ruleLessons.slice(12)
+    expect(detailed).toHaveLength(11)
+    expect(detailed.every((lesson) => lesson.studySections?.length)).toBe(true)
+    expect(detailed.flatMap((lesson) => lesson.studySections ?? []).flatMap((section) => section.items).length).toBeGreaterThan(80)
+    const commonYaku = detailed.find((lesson) => lesson.id === 'common-yaku')
+    expect(commonYaku?.studySections?.flatMap((section) => section.items).map((item) => item.title)).toEqual(expect.arrayContaining(['立直', '门前清自摸和', '断幺九', '平和', '役牌', '赤宝牌']))
+  })
+
   it('keeps the key furiten example explicit', () => {
     const furiten = ruleLessons.find((lesson) => lesson.id === 'furiten')
     expect(furiten?.keyPoint).toContain('整组等待')

@@ -142,6 +142,17 @@ footer { padding: 24px 5px 0; color: #8e887e; text-align: center; font-size: 10p
 .rule-reading-card ul { display: grid; gap: 11px; margin: 0; padding-left: 20px; }
 .rule-reading-card li { padding-left: 3px; color: #4e5f59; font-size: 12px; line-height: 1.7; }
 .rule-reading-card li::marker { color: var(--orange); }
+.rule-study-section { margin-top: 15px; padding: 15px; border: 1px solid #cad8d2; border-radius: 13px; background: #f2f7f4; }
+.rule-study-heading > span { color: #94702e; font-size: 8px; font-weight: 900; letter-spacing: .12em; }
+.rule-study-heading h2 { margin: 3px 0 0; color: #29493f; font: 900 18px "Noto Serif SC", serif; }
+.rule-study-heading p { margin: 6px 0 0; color: #68766f; font-size: 10px; line-height: 1.65; }
+.rule-study-grid { display: grid; gap: 8px; margin-top: 11px; }
+.rule-study-item { padding: 12px; border: 1px solid #d4dfda; border-radius: 9px; background: rgba(255,255,255,.78); }
+.rule-study-item > div { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 9px; }
+.rule-study-item strong { color: #24483d; font-size: 12px; }
+.rule-study-item > div span { padding: 2px 6px; border-radius: 9px; color: #4d6d62; background: #e2eee9; font-size: 8px; font-weight: 800; }
+.rule-study-item p { margin: 6px 0 0; color: #4f5f59; font-size: 10px; line-height: 1.65; }
+.rule-study-item small { display: block; margin-top: 7px; padding-top: 6px; border-top: 1px dashed #d9e1dd; color: #8a654f; font-size: 8px; line-height: 1.6; }
 .rule-memory { margin-top: 17px; padding: 13px 14px; border-left: 4px solid var(--gold); border-radius: 0 9px 9px 0; background: #fffaf0; }
 .rule-memory span, .rule-memory strong { display: block; }
 .rule-memory span { margin-bottom: 5px; color: #9a7530; font-size: 9px; font-weight: 900; letter-spacing: .12em; }
@@ -451,6 +462,7 @@ footer { padding: 24px 5px 0; color: #8e887e; text-align: center; font-size: 10p
   .topbar { border-radius: 18px 18px 0 0; }
   .lesson-card { min-height: auto; padding: 35px 38px 45px; border-radius: 0 0 18px 18px; box-shadow: 0 18px 38px rgba(0,0,0,.18); }
   .rule-contrast-card { grid-template-columns: 1fr 1fr; }
+  .rule-study-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hand-grid { --hand-gap: 4px; grid-template-columns: repeat(14, minmax(0, 1fr)); }
   .continuous-candidates .evaluation-row { grid-template-columns: 1.15fr .48fr .42fr 1.65fr; grid-template-areas: "discard numbers quality ukeire"; }
   .quality-ukeire-breakdown { padding-top: 0; padding-left: 7px; border-top: 0; border-left: 1px dashed #e0ddd5; }

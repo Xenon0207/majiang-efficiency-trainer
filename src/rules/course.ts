@@ -22,11 +22,17 @@ export interface RuleLesson {
   difference: string
   keyPoint: string
   points: readonly string[]
+  studySections?: readonly RuleStudySection[]
   terms: string
   example?: { label: string; tiles: readonly TileCode[]; caption: string }
   sessionSize?: number
   poolLabel?: string
   questions: readonly RuleQuestion[]
+}
+export interface RuleStudySection {
+  title: string
+  intro?: string
+  items: readonly { title: string; badge?: string; body: string; note?: string }[]
 }
 export interface RulePhase { id: string; eyebrow: string; title: string; goal: string; lessonIds: readonly string[] }
 type QuestionVisual = Pick<RuleQuestion, 'tiles' | 'river' | 'doraIndicator' | 'note'>
