@@ -2,8 +2,10 @@ import { describe, expect, it } from 'vitest'
 import { ruleLessons, rulePhases, totalRuleQuestions } from './course'
 
 describe('rule course content', () => {
-  it('keeps the twelve-lesson quick start and adds the detailed curriculum', () => {
-    expect(ruleLessons.slice(0, 12)).toHaveLength(12)
+  it('uses a slower fourteen-lesson quick start and adds the detailed curriculum', () => {
+    const quickIds = new Set(rulePhases.slice(0, 3).flatMap((phase) => phase.lessonIds))
+    const quick = ruleLessons.filter((lesson) => quickIds.has(lesson.id))
+    expect(quick).toHaveLength(14)
     expect(ruleLessons.length).toBeGreaterThan(20)
     expect(rulePhases.slice(0, 3)).toHaveLength(3)
     expect(rulePhases.length).toBeGreaterThanOrEqual(6)
@@ -34,7 +36,8 @@ describe('rule course content', () => {
   })
 
   it('teaches every detailed lesson before asking questions', () => {
-    const detailed = ruleLessons.slice(12)
+    const detailedIds = new Set(rulePhases.slice(3).flatMap((phase) => phase.lessonIds))
+    const detailed = ruleLessons.filter((lesson) => detailedIds.has(lesson.id))
     expect(detailed).toHaveLength(11)
     expect(detailed.every((lesson) => lesson.studySections?.length)).toBe(true)
     expect(detailed.flatMap((lesson) => lesson.studySections ?? []).flatMap((section) => section.items).length).toBeGreaterThan(80)
@@ -47,6 +50,24 @@ describe('rule course content', () => {
     expect(furiten?.keyPoint).toContain('整组等待')
     expect(furiten?.questions[0].prompt).toContain('23万')
     expect(furiten?.questions[0].prompt).toContain('1万和4万')
-    expect(furiten?.questions.length).toBeGreaterThanOrEqual(7)
+    expect(furiten?.questions).toHaveLength(4)
+    const pass = ruleLessons.find((lesson) => lesson.id === 'furiten-pass')
+    expect(pass?.questions).toHaveLength(3)
+    expect(pass?.keyPoint).toContain('下一次摸牌后恢复')
+  })
+
+  it('introduces the core rule terms one small lesson at a time', () => {
+    expect(rulePhases[0].lessonIds).toEqual([
+      'yaku-gate',
+      'calling-basics',
+      'closed-riichi',
+      'dora',
+      'furiten',
+      'furiten-pass',
+    ])
+
+    const firstLesson = ruleLessons.find((lesson) => lesson.id === 'yaku-gate')
+    expect(firstLesson).toBeDefined()
+    expect(JSON.stringify(firstLesson)).not.toMatch(/宝牌|振听|门清|鸣牌|副露/)
   })
 })

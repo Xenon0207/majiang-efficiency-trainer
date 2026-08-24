@@ -332,10 +332,12 @@ function Home({ progress, ruleProgress, onOpenRules, onOpenDetailedRules, onOpen
   const completed = Object.values(progress.correct).filter(Boolean).length
   const attempted = Object.keys(progress.attempts).length
   const rulesAttempted = Object.keys(ruleProgress.attempts).length
-  const quickLessons = ruleLessons.slice(0, 12)
-  const detailedLessons = ruleLessons.slice(12)
+  const quickLessonIds = new Set(rulePhases.slice(0, 3).flatMap((phase) => phase.lessonIds))
+  const quickLessons = ruleLessons.filter((lesson) => quickLessonIds.has(lesson.id))
+  const detailedLessons = ruleLessons.filter((lesson) => !quickLessonIds.has(lesson.id))
   const quickQuestionIds = new Set(quickLessons.flatMap((lesson) => lesson.questions.map((question) => question.id)))
   const quickCorrect = Object.entries(ruleProgress.correct).filter(([id, value]) => value && quickQuestionIds.has(id)).length
+  const quickAttempted = Object.keys(ruleProgress.attempts).some((id) => quickQuestionIds.has(id))
   const quickQuestionCount = quickLessons.reduce((sum, lesson) => sum + lesson.questions.length, 0)
   const detailedCompleted = detailedLessons.filter((lesson) => ruleProgress.completedLessons.includes(lesson.id)).length
   return (
@@ -354,7 +356,7 @@ function Home({ progress, ruleProgress, onOpenRules, onOpenDetailedRules, onOpen
           {rulePhases.slice(0, 3).map((phase) => <div key={phase.id}><span>{phase.eyebrow}</span><strong>{phase.title}</strong></div>)}
         </div>
         <div className="rules-entry-progress"><span>{quickLessons.filter((lesson) => ruleProgress.completedLessons.includes(lesson.id)).length} / {quickLessons.length} 课</span><span>{quickCorrect} / {quickQuestionCount} 题答对过</span></div>
-        <button className="primary-button full" onClick={onOpenRules}>{rulesAttempted ? '继续规则课程' : '开始规则入门'}<span>→</span></button>
+        <button className="primary-button full" onClick={onOpenRules}>{quickAttempted ? '继续规则课程' : '开始规则入门'}<span>→</span></button>
       </section>
       <section className="dashboard-card">
         <div className="dashboard-top"><div><span>课程进度</span><strong>{completed}<small> / {questions.length}</small></strong></div><div className="ring" style={{ '--progress': `${completed / questions.length * 360}deg` } as CSSProperties}><span>{Math.round(completed / questions.length * 100)}%</span></div></div>
