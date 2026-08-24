@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { parseTiles } from '../domain/tiles'
 import { resolveShapeSegments } from '../decomposition/rules'
+import { buildHandGroupingModel, createHandGroupingState, selectedSuitPartition } from '../decomposition/hand-grouping'
 import { evaluateDiscards } from '../solver/evaluate'
 import { calculateShanten } from '../solver/shanten'
 import { toCounts } from '../domain/tiles'
@@ -71,6 +72,19 @@ describe('1.0 content', () => {
       const resolved = resolveShapeSegments(parseTiles(question.hand), question.segments)
       const ids = resolved.flatMap((segment) => segment.tileIds)
       expect(new Set(ids).size, question.id).toBe(ids.length)
+    }
+  })
+
+  it('runs every basic lesson through the shared whole-hand organizer', () => {
+    for (const question of questions) {
+      const hand = parseTiles(question.hand)
+      const model = buildHandGroupingModel(hand)
+      const assignedIds = model.suits.flatMap((suit) =>
+        selectedSuitPartition(suit, createHandGroupingState()).groups.flatMap((group) => group.tileIds),
+      )
+      expect(assignedIds, question.id).toHaveLength(hand.length)
+      expect(new Set(assignedIds).size, question.id).toBe(hand.length)
+      expect(new Set(assignedIds), question.id).toEqual(new Set(hand.map((tile) => tile.id)))
     }
   })
 })

@@ -6,6 +6,8 @@ import {
   type HandGroupingState,
 } from '../decomposition/hand-grouping'
 
+const HONOR_LABELS = ['东', '南', '西', '北', '白', '发', '中'] as const
+
 export function HandGroupingGuide({ model, state }: { model: HandGroupingModel; state: HandGroupingState }) {
   if (!state.interacted) {
     return <div className="grouping-empty">点击手牌后一次显示全部分组；再点同门任意牌，循环该门的合理方案。</div>
@@ -24,7 +26,7 @@ export function HandGroupingGuide({ model, state }: { model: HandGroupingModel; 
             </div>
             {structural.length > 0 && <div className="suit-groups">{structural.map((group) => <b key={group.id}>[{formatGroup(group, suit.suit)}]</b>)}</div>}
             {singles.length > 0 && <div className="suit-singles"><span>浮牌</span>{singles.map((group) => <b key={group.id}>{formatGroup(group, suit.suit)}</b>)}</div>}
-            <small>理论受入 {partition.effectiveCount} 枚{partition.effectiveRanks.length > 0 ? ` · ${partition.effectiveRanks.map((rank) => suit.suit === 'z' ? rank : `${rank}${suit.suit}`).join('、')}` : ''}</small>
+            <small>理论受入 {partition.effectiveCount} 枚{partition.effectiveRanks.length > 0 ? ` · ${partition.effectiveRanks.map((rank) => suit.suit === 'z' ? HONOR_LABELS[rank - 1] : `${rank}${suit.suit}`).join('、')}` : ''}</small>
           </section>
         )
       })}
@@ -32,4 +34,3 @@ export function HandGroupingGuide({ model, state }: { model: HandGroupingModel; 
     </div>
   )
 }
-

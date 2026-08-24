@@ -1,15 +1,13 @@
-import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
+import { useMemo, useState } from 'react'
 import { HandGrid } from '../components/HandGrid'
 import { HandGroupingGuide } from '../components/HandGroupingGuide'
 import { MahjongTile } from '../components/MahjongTile'
+import { useHandOrganizer } from '../components/useHandOrganizer'
 import { doraFromIndicator, normalizeTile, parseTiles, sortTiles, tileLabel, toCounts, type TileCode, type TileInstance } from '../domain/tiles'
 import {
-  arrangeHandForGrouping,
   buildHandGroupingModel,
-  clickHandGrouping,
   createHandGroupingState,
   formatGroup,
-  handGroupMarks,
   selectedSuitPartition,
 } from '../decomposition/hand-grouping'
 import { calculateRouteShanten } from '../solver/shanten'
@@ -324,111 +322,29 @@ export function ContinuousTrainer({ session, onBack, onNewSession }: {
 }) {
   const initial = useMemo(() => startContinuousSession(session), [session])
   const [state, setState] = useState<ContinuousState>(initial)
-  const [displayHand, setDisplayHand] = useState(initial.hand)
-  const initialGroupingModel = useMemo(() => buildHandGroupingModel(initial.hand), [initial.hand])
-  const [groupingModel, setGroupingModel] = useState(initialGroupingModel)
-  const [grouping, setGrouping] = useState(createHandGroupingState)
-  const [mode, setMode] = useState<'discard' | 'organize'>('discard')
+  const organizer = useHandOrganizer(initial.hand, state.complete)
+  const { displayHand, grouping, groupingModel, handGrid, mode, tileGroups } = organizer
   const [comparisonExpanded, setComparisonExpanded] = useState(false)
-  const drag = useRef({ tileId: '', startX: 0, startY: 0, moved: false })
-  const handGrid = useRef<HTMLDivElement>(null)
   const lastTurn = state.history.at(-1)
   const routes = calculateRouteShanten(toCounts(state.hand), continuousShantenOptions(state).fixedMelds)
   const routeMinimum = Math.min(routes.standard, routes.chiitoi, routes.kokushi)
   const kanOptions = useMemo(() => evaluateKanOptions(state, session), [session, state])
   const optimalRate = state.history.length > 0 ? `${optimalChoicePercent(state)}%` : '—'
 
-  const tileGroups = useMemo(() => handGroupMarks(groupingModel, grouping), [grouping, groupingModel])
-
-  function finishDrag() {
-    const moved = drag.current.moved
-    drag.current.tileId = ''
-    if (moved) {
-      // 自由拖动表示玩家开始手动试摆；旧自动分组不再声称与新顺序对应。
-      setGrouping(createHandGroupingState())
-      window.setTimeout(() => { drag.current.moved = false }, 0)
-    }
-  }
-
-  useEffect(() => {
-    const cancel = () => finishDrag()
-    const cancelOutside = (event: PointerEvent) => {
-      if (!drag.current.tileId) return
-      const bounds = handGrid.current?.getBoundingClientRect()
-      if (bounds && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) finishDrag()
-    }
-    window.addEventListener('pointermove', cancelOutside, true)
-    window.addEventListener('pointerup', cancel)
-    window.addEventListener('pointercancel', cancel)
-    window.addEventListener('blur', cancel)
-    return () => {
-      window.removeEventListener('pointermove', cancelOutside, true)
-      window.removeEventListener('pointerup', cancel)
-      window.removeEventListener('pointercancel', cancel)
-      window.removeEventListener('blur', cancel)
-    }
-  }, [])
-
   function resetForHand(next: ContinuousState) {
     setState(next)
-    setDisplayHand(next.hand)
-    setGroupingModel(buildHandGroupingModel(next.hand))
-    setGrouping(createHandGroupingState())
-    setMode('discard')
+    organizer.resetHand(next.hand)
     setComparisonExpanded(false)
-    finishDrag()
   }
 
   function chooseTile(tile: TileInstance) {
-    if (drag.current.moved || state.complete) return
-    if (mode === 'organize') {
-      setGrouping((current) => {
-        const next = clickHandGrouping(current, groupingModel, tile.id)
-        setDisplayHand((shown) => arrangeHandForGrouping(shown, groupingModel, next))
-        return next
-      })
-      return
-    }
+    if (state.complete || organizer.handleOrganizeTile(tile)) return
     resetForHand(discardAndDraw(state, session, tile.id))
   }
 
   function chooseKan(tile: TileCode) {
     if (state.complete || mode !== 'discard') return
     resetForHand(declareKan(state, session, tile))
-  }
-
-  function beginDrag(tile: TileInstance, event: ReactPointerEvent<HTMLButtonElement>) {
-    if (mode !== 'organize' || state.complete) return
-    drag.current = { tileId: tile.id, startX: event.clientX, startY: event.clientY, moved: false }
-    event.currentTarget.setPointerCapture(event.pointerId)
-  }
-
-  function moveDrag(event: ReactPointerEvent<HTMLButtonElement>) {
-    if (mode !== 'organize' || !drag.current.tileId) return
-    const bounds = handGrid.current?.getBoundingClientRect()
-    if (bounds && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) {
-      finishDrag()
-      return
-    }
-    if (Math.hypot(event.clientX - drag.current.startX, event.clientY - drag.current.startY) < 9 && !drag.current.moved) return
-    drag.current.moved = true
-    const target = document.elementFromPoint(event.clientX, event.clientY)?.closest<HTMLElement>('[data-tile-id]')
-    const targetId = target?.dataset.tileId
-    if (!targetId || targetId === drag.current.tileId) return
-    setDisplayHand((current) => {
-      const sourceIndex = current.findIndex((tile) => tile.id === drag.current.tileId)
-      const targetIndex = current.findIndex((tile) => tile.id === targetId)
-      if (sourceIndex < 0 || targetIndex < 0) return current
-      const next = [...current]
-      const [moving] = next.splice(sourceIndex, 1)
-      next.splice(targetIndex, 0, moving)
-      return next
-    })
-  }
-
-  function endDrag(event: ReactPointerEvent<HTMLButtonElement>) {
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
-    finishDrag()
   }
 
   return (
@@ -460,25 +376,25 @@ export function ContinuousTrainer({ session, onBack, onNewSession }: {
             action={mode === 'organize' ? '整理' : '选择切牌'}
             drawn={tile.id === state.lastDrawId}
             onClick={() => chooseTile(tile)}
-            onPointerDown={mode === 'organize' ? (event) => beginDrag(tile, event) : undefined}
-            onPointerMove={mode === 'organize' ? moveDrag : undefined}
-            onPointerEnd={mode === 'organize' ? endDrag : undefined}
-            onLostPointerCapture={mode === 'organize' ? finishDrag : undefined}
+            onPointerDown={mode === 'organize' ? (event) => organizer.beginDrag(tile, event) : undefined}
+            onPointerMove={mode === 'organize' ? organizer.moveDrag : undefined}
+            onPointerEnd={mode === 'organize' ? organizer.endDrag : undefined}
+            onLostPointerCapture={mode === 'organize' ? organizer.finishDrag : undefined}
           />}
         </HandGrid>
 
         {!state.complete && mode === 'discard' && <section className="discard-workspace">
           <div className="support-actions">
-            <button className="organize-entry" onClick={() => setMode('organize')}>整理手牌与分组</button>
+            <button className="organize-entry" onClick={() => organizer.setMode('organize')}>整理手牌与分组</button>
             <span className="turn-note">点牌即切，并自动摸下一张</span>
           </div>
           {kanOptions.length > 0 && <div className="kan-actions"><span>可选动作</span>{kanOptions.map((option) => <button onClick={() => chooseKan(option.tile)} key={option.tile}><span className="kan-action-tiles">{state.hand.filter((tile) => tile.normalized === option.tile).map((tile) => <MahjongTile tile={tile} compact key={tile.id} />)}</span><strong>暗杠{tileLabel(option.tile)}</strong><small>点击后立即判断</small></button>)}</div>}
         </section>}
 
         {!state.complete && mode === 'organize' && <section className="organize-workspace">
-          <div className="organize-heading"><div><strong>整理手牌</strong><span>本巡分组在进张后重新匹配，首次点击才显示</span></div><button onClick={() => setDisplayHand(state.hand)}>恢复自动理牌</button></div>
+          <div className="organize-heading"><div><strong>整理手牌</strong><span>本巡分组在进张后重新匹配，首次点击才显示</span></div><button onClick={() => organizer.restoreAutoSort(state.hand)}>恢复自动理牌</button></div>
           <HandGroupingGuide model={groupingModel} state={grouping} />
-          <button className="primary-button full organizer-return" onClick={() => setMode('discard')}>整理完成，返回切牌</button>
+          <button className="primary-button full organizer-return" onClick={() => organizer.setMode('discard')}>整理完成，返回切牌</button>
         </section>}
 
         {lastTurn && <TurnFeedback key={lastTurn.turn} turn={lastTurn} session={session} expanded={comparisonExpanded} onToggleExpanded={() => setComparisonExpanded((current) => !current)} />}

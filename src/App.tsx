@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
+import { useMemo, useState } from 'react'
 import { principleById, principles } from './content/principles'
 import { questions } from './content/catalog'
 import type { Question } from './content/types'
@@ -12,12 +12,15 @@ import {
   type TileInstance,
 } from './domain/tiles'
 import { HandGrid } from './components/HandGrid'
+import { HandGroupingGuide } from './components/HandGroupingGuide'
 import { MahjongTile as Tile } from './components/MahjongTile'
-import { ShapeGuide } from './components/ShapeGuide'
-import { arrangeHandByDecomposition, clickDecomposition, createDecompositionState, visibleGroups } from './decomposition/state'
-import { buildDisplayPartition } from './decomposition/partition'
-import { groupTileIds, resolveShapeSegments } from './decomposition/rules'
-import type { HandGroupMark } from './decomposition/hand-grouping'
+import { useHandOrganizer } from './components/useHandOrganizer'
+import {
+  buildHandGroupingModel,
+  createHandGroupingState,
+  formatGroup,
+  selectedSuitPartition,
+} from './decomposition/hand-grouping'
 import { evaluateDiscards } from './solver/evaluate'
 import { EMPTY_PROGRESS, loadProgress, recordAnswer, resetProgress, type ProgressState } from './progress'
 import { ContinuousTrainer } from './continuous/ContinuousTrainer'
@@ -92,113 +95,24 @@ function Lesson({ question, number, total, onBack, onNext, onAnswered }: {
   onAnswered: (correct: boolean) => void
 }) {
   const hand = useMemo(() => sortTiles(parseTiles(question.hand), question.suitOrder), [question])
-  const [displayHand, setDisplayHand] = useState(hand)
-  const segments = useMemo(() => resolveShapeSegments(hand, question.segments), [hand, question])
-  const [decomposition, setDecomposition] = useState(() => createDecompositionState(segments))
-  const [mode, setMode] = useState<'organize' | 'discard'>('discard')
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
   const [showHint, setShowHint] = useState(false)
+  const organizer = useHandOrganizer(hand, submitted)
+  const { displayHand, grouping, groupingModel, handGrid, mode, tileGroups } = organizer
   const selected = hand.find((tile) => tile.id === selectedId)
   const correct = selected ? question.answerTiles.some((answer) => answer === selected.code) : false
   const principle = principleById.get(question.principleId)!
   const recommendedDiscard = displayHand.find((tile) => question.answerTiles.includes(tile.code))
   const recommendedPartition = submitted && recommendedDiscard
-    ? buildDisplayPartition(displayHand, recommendedDiscard.id, segments)
+    ? buildHandGroupingModel(displayHand.filter((tile) => tile.id !== recommendedDiscard.id)).suits.flatMap((suit) =>
+      selectedSuitPartition(suit, createHandGroupingState()).groups.map((group) => formatGroup(group, suit.suit)),
+    )
     : []
-  const drag = useRef({ tileId: '', startX: 0, startY: 0, moved: false })
-  const handGrid = useRef<HTMLDivElement>(null)
-  const tileGroups = useMemo(() => {
-    const result = new Map<string, HandGroupMark>()
-    for (const segment of segments) {
-      const groups = visibleGroups(decomposition, segment)
-      if (!groups) continue
-      groupTileIds(segment, groups).forEach((ids, groupIndex) => {
-        if (ids.length === 1) return
-        ids.forEach((tileId) => result.set(tileId, {
-          groupId: `${segment.id}-${groupIndex}`,
-          status: segment.rule.forced ? 'locked' : 'unlocked',
-        }))
-      })
-    }
-    return result
-  }, [decomposition, segments])
-
-  function finishDrag() {
-    const moved = drag.current.moved
-    drag.current.tileId = ''
-    if (moved) {
-      setDecomposition(createDecompositionState(segments))
-      window.setTimeout(() => { drag.current.moved = false }, 0)
-    }
-  }
-
-  useEffect(() => {
-    const cancel = () => finishDrag()
-    const cancelOutside = (event: PointerEvent) => {
-      if (!drag.current.tileId) return
-      const bounds = handGrid.current?.getBoundingClientRect()
-      if (bounds && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) finishDrag()
-    }
-    window.addEventListener('pointermove', cancelOutside, true)
-    window.addEventListener('pointerup', cancel)
-    window.addEventListener('pointercancel', cancel)
-    window.addEventListener('blur', cancel)
-    return () => {
-      window.removeEventListener('pointermove', cancelOutside, true)
-      window.removeEventListener('pointerup', cancel)
-      window.removeEventListener('pointercancel', cancel)
-      window.removeEventListener('blur', cancel)
-    }
-  }, [])
-
   function chooseTile(tile: TileInstance) {
     if (submitted) return
-    if (drag.current.moved) return
-    if (mode === 'organize') {
-      setDecomposition((current) => {
-        const next = clickDecomposition(current, segments, tile.id)
-        setDisplayHand((shown) => arrangeHandByDecomposition(shown, segments, next))
-        return next
-      })
-      return
-    }
+    if (organizer.handleOrganizeTile(tile)) return
     setSelectedId(tile.id)
-  }
-
-  function beginDrag(tile: TileInstance, event: ReactPointerEvent<HTMLButtonElement>) {
-    if (submitted || mode !== 'organize') return
-    drag.current = { tileId: tile.id, startX: event.clientX, startY: event.clientY, moved: false }
-    event.currentTarget.setPointerCapture(event.pointerId)
-  }
-
-  function moveDrag(event: ReactPointerEvent<HTMLButtonElement>) {
-    if (submitted || mode !== 'organize' || !drag.current.tileId) return
-    const bounds = handGrid.current?.getBoundingClientRect()
-    if (bounds && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) {
-      finishDrag()
-      return
-    }
-    const distance = Math.hypot(event.clientX - drag.current.startX, event.clientY - drag.current.startY)
-    if (distance < 9 && !drag.current.moved) return
-    drag.current.moved = true
-    const target = document.elementFromPoint(event.clientX, event.clientY)?.closest<HTMLElement>('[data-tile-id]')
-    const targetId = target?.dataset.tileId
-    if (!targetId || targetId === drag.current.tileId) return
-    setDisplayHand((current) => {
-      const sourceIndex = current.findIndex((tile) => tile.id === drag.current.tileId)
-      const targetIndex = current.findIndex((tile) => tile.id === targetId)
-      if (sourceIndex < 0 || targetIndex < 0) return current
-      const next = [...current]
-      const [moving] = next.splice(sourceIndex, 1)
-      next.splice(targetIndex, 0, moving)
-      return next
-    })
-  }
-
-  function endDrag(event: ReactPointerEvent<HTMLButtonElement>) {
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
-    finishDrag()
   }
 
   function submit() {
@@ -230,21 +144,21 @@ function Lesson({ question, number, total, onBack, onNext, onAnswered }: {
               dimmed={submitted && tile.id !== selectedId}
               action={mode === 'organize' ? '整理' : '选择切牌'}
               onClick={() => chooseTile(tile)}
-              onPointerDown={mode === 'organize' ? (event) => beginDrag(tile, event) : undefined}
-              onPointerMove={mode === 'organize' ? moveDrag : undefined}
-              onPointerEnd={mode === 'organize' ? endDrag : undefined}
-              onLostPointerCapture={mode === 'organize' ? finishDrag : undefined}
+              onPointerDown={mode === 'organize' ? (event) => organizer.beginDrag(tile, event) : undefined}
+              onPointerMove={mode === 'organize' ? organizer.moveDrag : undefined}
+              onPointerEnd={mode === 'organize' ? organizer.endDrag : undefined}
+              onLostPointerCapture={mode === 'organize' ? organizer.finishDrag : undefined}
               key={tile.id}
             />
           )}
         </HandGrid>
 
-        {submitted && <button className="post-answer-sort" onClick={() => setDisplayHand(hand)}>恢复自动理牌顺序</button>}
+        {submitted && <button className="post-answer-sort" onClick={() => organizer.restoreAutoSort(hand)}>恢复自动理牌顺序</button>}
 
         {!submitted && mode === 'discard' && (
           <section className="discard-workspace" aria-label="切牌操作">
             <div className="support-actions">
-              <button className="organize-entry" onClick={() => setMode('organize')}>整理手牌与分组</button>
+              <button className="organize-entry" onClick={() => organizer.setMode('organize')}>整理手牌与分组</button>
               <button className="text-button" onClick={() => setShowHint((value) => !value)}>{showHint ? '收起原则' : '查看原则提示'}</button>
             </div>
             <button className="primary-button full" disabled={!selected} onClick={submit}>{selected ? `确认切 ${tileLabel(selected.code)}` : '先选一张牌'}</button>
@@ -253,11 +167,11 @@ function Lesson({ question, number, total, onBack, onNext, onAnswered }: {
 
         {!submitted && mode === 'organize' && (
           <section className="organize-workspace" aria-label="整理手牌">
-            <div className="organize-heading"><div><strong>整理手牌</strong><span>拖动改变顺序；点击牌标记或切换分组</span></div><button onClick={() => setDisplayHand(hand)}>恢复自动理牌</button></div>
-            <ShapeGuide segments={segments} state={decomposition} />
+            <div className="organize-heading"><div><strong>整理手牌</strong><span>点击后显示全手分组；再点同门任意牌切换方案</span></div><button onClick={() => organizer.restoreAutoSort(hand)}>恢复自动理牌</button></div>
+            <HandGroupingGuide model={groupingModel} state={grouping} />
             <div className="answer-actions">
               <button className="text-button" onClick={() => setShowHint((value) => !value)}>{showHint ? '收起原则' : '查看原则提示'}</button>
-              <button className="primary-button" onClick={() => setMode('discard')}>整理完成，返回切牌</button>
+              <button className="primary-button" onClick={() => organizer.setMode('discard')}>整理完成，返回切牌</button>
             </div>
           </section>
         )}
