@@ -36,33 +36,20 @@ button:focus-visible { outline: 3px solid #f0b64a; outline-offset: 3px; }
 .hero-tile { display: none; align-items: center; flex-direction: column; gap: 9px; color: #bcd0c8; font-size: 11px; }
 .hero-tile img { width: 68px; filter: drop-shadow(0 7px 6px rgba(0,0,0,.28)); transform: rotate(5deg); }
 
-.dashboard-card, .continuous-entry-card, .rules-entry-card, .lesson-card { border: 1px solid rgba(59,53,42,.1); background: var(--paper); box-shadow: 0 14px 35px rgba(35,44,38,.12); }
-.dashboard-card { padding: 22px; border-radius: 18px; }
-.rules-entry-card { margin-bottom: 15px; padding: 19px 21px; border-radius: 18px; }
-.rules-entry-heading { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: 12px; }
-.rules-entry-heading .version-tag { display: inline-flex; padding: 5px 9px; border-radius: 15px; color: #493c20; background: #e4bb68; font-size: 10px; font-weight: 900; }
-.rules-entry-heading strong { display: block; font: 900 18px "Noto Serif SC", serif; }
-.rules-entry-heading p { margin: 5px 0 12px; color: var(--muted); font-size: 11px; line-height: 1.65; }
-.home-rule-goals { display: grid; gap: 5px; margin: 2px 0 12px 52px; }
-.home-rule-goals > div { display: grid; grid-template-columns: minmax(105px,.8fr) 1fr; gap: 8px; align-items: center; padding: 6px 8px; border-radius: 7px; background: #f7f2e8; }
-.home-rule-goals span { color: #9a7530; font-size: 8px; font-weight: 900; }
-.home-rule-goals strong { font-size: 10px; }
-.rules-entry-progress { display: flex; justify-content: space-between; margin: 0 0 14px 52px; color: #7e786e; font-size: 10px; }
-.continuous-entry-card { margin-top: 15px; padding: 19px 21px; border-radius: 18px; }
-.continuous-entry-card > div:first-child { position: relative; padding-left: 54px; }
-.continuous-entry-card .version-tag { position: absolute; top: 0; left: 0; padding: 5px 9px; border-radius: 15px; color: white; background: var(--forest-2); font-size: 10px; font-weight: 900; }
-.continuous-entry-card strong { display: block; font: 900 18px "Noto Serif SC", serif; }
-.continuous-entry-card p { margin: 5px 0 15px; color: var(--muted); font-size: 11px; line-height: 1.65; }
-.detailed-rules-entry-card .version-tag { background: #9a7530; }
-.detail-entry-progress { display: flex; justify-content: space-between; gap: 10px; margin: -3px 0 13px 54px; color: #817a6e; font-size: 9px; }
-.dashboard-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.dashboard-top > div:first-child > span, .dashboard-top strong { display: block; }
-.dashboard-top > div:first-child > span { color: var(--muted); font-size: 12px; }
-.dashboard-top strong { margin-top: 3px; font: 900 34px "Noto Serif SC", serif; }
-.dashboard-top strong small { color: #aaa397; font: 600 15px "Noto Sans SC", sans-serif; }
-.ring { --progress: 0deg; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--orange) var(--progress), #e8e2d7 0); position: relative; }
-.ring::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: var(--paper); }
-.ring span { position: relative; z-index: 1; font-size: 11px; font-weight: 800; }
+.home-course-card, .lesson-card { border: 1px solid rgba(59,53,42,.1); background: var(--paper); box-shadow: 0 14px 35px rgba(35,44,38,.12); }
+.home-course-list { display: grid; gap: 15px; }
+.home-course-card { position: relative; display: flex; flex-direction: column; padding: 20px 21px; overflow: hidden; border-radius: 18px; }
+.home-course-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: #d8cbb5; }
+.home-course-card.core-course-card::before { background: var(--forest-2); }
+.home-course-heading { display: grid; grid-template-columns: 38px minmax(0,1fr); align-items: start; gap: 12px; }
+.home-course-index { display: grid; place-items: center; width: 36px; height: 40px; border-radius: 7px; color: #8a7550; background: #f2ebde; font: 900 12px "Noto Serif SC", serif; }
+.core-course-card .home-course-index { color: white; background: var(--forest-2); }
+.home-course-kind { display: block; margin-bottom: 3px; color: #9a7530; font-size: 9px; font-weight: 900; letter-spacing: .1em; }
+.core-course-card .home-course-kind { color: var(--forest-2); }
+.home-course-heading strong { display: block; font: 900 18px "Noto Serif SC", serif; }
+.home-course-heading p { margin: 5px 0 0; color: var(--muted); font-size: 11px; line-height: 1.65; }
+.home-course-meta { display: flex; justify-content: space-between; gap: 12px; margin: auto 0 14px 50px; padding-top: 10px; border-top: 1px solid #eee7db; color: #7e786e; font-size: 10px; }
+.home-course-heading + .home-course-meta { margin-top: 13px; }
 
 .primary-button, .secondary-button, .text-button { border: 0; border-radius: 10px; cursor: pointer; min-height: 48px; font-weight: 800; }
 .primary-button { padding: 0 20px; color: white; background: var(--orange); box-shadow: 0 4px 0 #a84e31; }
@@ -471,6 +458,12 @@ footer { padding: 24px 5px 0; color: #8e887e; text-align: center; font-size: 10p
   .answer-comparison .answer-evaluation-row { grid-template-columns: 66px 138px 72px minmax(0,1fr); grid-template-areas: "discard numbers quality ukeire"; }
   .evaluation-difference-line { grid-template-columns: minmax(180px,.8fr) minmax(0,1fr) minmax(0,1fr); align-items: center; }
   .equivalent-solution { grid-template-columns: minmax(120px,.55fr) 1.45fr; }
+}
+
+@media (min-width: 700px) {
+  .home-course-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .home-course-card { min-height: 252px; }
+  .home-course-heading + .home-course-meta { margin-top: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {

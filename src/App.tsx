@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 import { principleById, principles } from './content/principles'
 import { questions } from './content/catalog'
 import type { Question } from './content/types'
@@ -347,31 +347,29 @@ function Home({ progress, ruleProgress, onOpenRules, onOpenDetailedRules, onOpen
         <div className="hero-copy"><span className="eyebrow">从会打麻将，到真正理解日麻</span><h1>懂规则，<br />也懂每一切。</h1><p>从快速规则、基础牌效到连续手牌训练，再逐步进入役种、算分与攻防判断。</p></div>
         <div className="hero-tile"><img src={tileImage('7z')} alt="红中" /><span>循序渐进</span></div>
       </section>
-      <section className="rules-entry-card">
-        <div className="rules-entry-heading">
-          <span className="version-tag">先学</span>
-          <div><strong>从川麻 / 国标切换到日麻</strong><p>不从牌名讲起，只改变真正会妨碍上手的习惯。</p></div>
-        </div>
-        <div className="home-rule-goals">
-          {rulePhases.slice(0, 3).map((phase) => <div key={phase.id}><span>{phase.eyebrow}</span><strong>{phase.title}</strong></div>)}
-        </div>
-        <div className="rules-entry-progress"><span>{quickLessons.filter((lesson) => ruleProgress.completedLessons.includes(lesson.id)).length} / {quickLessons.length} 课</span><span>{quickCorrect} / {quickQuestionCount} 题答对过</span></div>
-        <button className="primary-button full" onClick={onOpenRules}>{quickAttempted ? '继续规则课程' : '开始规则入门'}<span>→</span></button>
-      </section>
-      <section className="dashboard-card">
-        <div className="dashboard-top"><div><span>课程进度</span><strong>{completed}<small> / {questions.length}</small></strong></div><div className="ring" style={{ '--progress': `${completed / questions.length * 360}deg` } as CSSProperties}><span>{Math.round(completed / questions.length * 100)}%</span></div></div>
-        <button className="primary-button full" onClick={onOpenCourses}>{attempted ? '继续基础课程' : '进入基础课程'}<span>→</span></button>
-        {progress.wrong.length > 0 && <button className="secondary-button full" onClick={onReview}>复习错题 · {progress.wrong.length}</button>}
-      </section>
-      <section className="continuous-entry-card">
-        <div><span className="version-tag">连续</span><strong>连续牌效训练</strong><p>每局即时洗出完整随机牌山，从随机散牌连续摸切；普通手、七对子与国士始终动态判断。</p></div>
-        <button className="primary-button full" onClick={onStartContinuous}>开始连续训练<span>→</span></button>
-      </section>
-      <section className="continuous-entry-card detailed-rules-entry-card">
-        <div><span className="version-tag">进阶</span><strong>详细规则与算分</strong><p>完整役种按实战频率学习；副露变化、番数复习、路线多选，以及数百道雀魂点数题。</p></div>
-        <div className="detail-entry-progress"><span>{detailedCompleted} / {detailedLessons.length} 课</span><span>赤五 · 食断 · 无切上满贯</span></div>
-        <button className="primary-button full" onClick={onOpenDetailedRules}>{detailedCompleted ? '继续详细规则' : '进入详细规则'}<span>→</span></button>
-      </section>
+      <div className="home-course-list">
+        <section className="home-course-card">
+          <div className="home-course-heading"><span className="home-course-index">01</span><div><span className="home-course-kind">上手准备</span><strong>从川麻 / 国标切换到日麻</strong><p>先补齐日麻特有的和牌规则，再带着这些知识进入基础牌效。</p></div></div>
+          <div className="home-course-meta"><span>{quickLessons.filter((lesson) => ruleProgress.completedLessons.includes(lesson.id)).length} / {quickLessons.length} 课</span><span>{quickCorrect} / {quickQuestionCount} 题答对过</span></div>
+          <button className="primary-button full" onClick={onOpenRules}>{quickAttempted ? '继续规则准备' : '开始规则准备'}<span>→</span></button>
+        </section>
+        <section className="home-course-card core-course-card">
+          <div className="home-course-heading"><span className="home-course-index">02</span><div><span className="home-course-kind">核心练习</span><strong>基础牌效课程</strong><p>一课练清一个牌效原则，一题只做一次选择，再看清受入与分组。</p></div></div>
+          <div className="home-course-meta"><span>{completed} / {questions.length} 题完成</span><span>{Math.round(completed / questions.length * 100)}%</span></div>
+          <button className="primary-button full" onClick={onOpenCourses}>{attempted ? '继续基础牌效' : '开始基础牌效'}<span>→</span></button>
+          {progress.wrong.length > 0 && <button className="secondary-button full" onClick={onReview}>复习错题 · {progress.wrong.length}</button>}
+        </section>
+        <section className="home-course-card core-course-card">
+          <div className="home-course-heading"><span className="home-course-index">03</span><div><span className="home-course-kind">核心练习</span><strong>连续牌效训练</strong><p>把原则放回完整的一手牌：随机牌山、连续摸切，并动态比较普通手、七对子与国士。</p></div></div>
+          <div className="home-course-meta"><span>完整随机牌山</span><span>每巡即时计算</span></div>
+          <button className="primary-button full" onClick={onStartContinuous}>开始连续牌效<span>→</span></button>
+        </section>
+        <section className="home-course-card">
+          <div className="home-course-heading"><span className="home-course-index">04</span><div><span className="home-course-kind">拓展课程</span><strong>详细规则与算分</strong><p>按实战频率继续学习役种、副露变化、番数和雀魂点数，随时回来补充也可以。</p></div></div>
+          <div className="home-course-meta"><span>{detailedCompleted} / {detailedLessons.length} 课</span><span>役种 · 算分 · 实战细节</span></div>
+          <button className="primary-button full" onClick={onOpenDetailedRules}>{detailedCompleted ? '继续详细规则' : '学习详细规则'}<span>→</span></button>
+        </section>
+      </div>
       {(attempted > 0 || rulesAttempted > 0) && <button className="reset-button" onClick={onReset}>清除本机学习记录</button>}
       <footer>题目与解释为原创改编 · 牌面来自 FluffyStuff / riichi-mahjong-tiles</footer>
     </main>
